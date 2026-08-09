@@ -759,12 +759,11 @@ def approx_latlon(address: str):
     return (base_lat + dx, base_lon + dy)
 
 
-@st.cache_data(ttl=86400 * 30, show_spinner=False)
-def geocode_yamanashi_address(address: str):
-    """山梨県内の住所を緯度・経度へ変換する。"""
+def geocode_yamanashi_address_diagnostic(address: str):
+    """山梨県内の住所を緯度・経度へ変換し、失敗理由も返す。"""
     address = (address or "").strip()
     if not address:
-        return None
+        return None, "住所が空です"
 
     query = address if "山梨県" in address else f"山梨県{address}"
     try:
@@ -773,31 +772,61 @@ def geocode_yamanashi_address(address: str):
             params={
                 "q": query,
                 "format": "jsonv2",
-                "limit": 3,
+                "limit": 5,
                 "countrycodes": "jp",
                 "addressdetails": 1,
             },
-            headers={"User-Agent": "yamanashi-welfare-facility-search/1.1"},
-            timeout=12,
+            headers={
+                "User-Agent": "yamanashi-welfare-facility-search/1.2",
+                "Accept-Language": "ja",
+            },
+            timeout=15,
         )
         response.raise_for_status()
         results = response.json()
+        if not results:
+            return None, "住所候補が0件でした"
+
+        outside = []
+        malformed = 0
         for item in results:
             try:
                 lat = float(item["lat"])
                 lon = float(item["lon"])
             except (KeyError, TypeError, ValueError):
+                malformed += 1
                 continue
+
             # 山梨県を十分に含む範囲。誤って県外の同名住所を採用するのを防ぐ。
             if 35.10 <= lat <= 36.05 and 138.10 <= lon <= 139.20:
                 return {
                     "lat": lat,
                     "lon": lon,
                     "display_name": item.get("display_name", query),
-                }
-        return None
-    except (requests.RequestException, ValueError, TypeError):
-        return None
+                }, "成功"
+            outside.append(f"{lat:.5f}, {lon:.5f}")
+
+        if outside:
+            return None, "候補は見つかりましたが山梨県判定の範囲外でした: " + " / ".join(outside[:3])
+        if malformed:
+            return None, "検索結果に利用できる緯度・経度がありませんでした"
+        return None, "検索結果を利用できませんでした"
+    except requests.HTTPError as e:
+        status = getattr(e.response, "status_code", "不明")
+        return None, f"HTTPエラー: {status}"
+    except requests.Timeout:
+        return None, "通信タイムアウト"
+    except requests.RequestException as e:
+        return None, f"通信エラー: {type(e).__name__}"
+    except (ValueError, TypeError) as e:
+        return None, f"応答データの解析エラー: {type(e).__name__}"
+
+
+@st.cache_data(ttl=86400 * 30, show_spinner=False)
+def geocode_yamanashi_address(address: str):
+    """通常利用向け。診断情報は捨てて検索結果だけ返す。"""
+    result, _ = geocode_yamanashi_address_diagnostic(address)
+    return result
 
 
 def geocode_home_address(address: str):
@@ -807,14 +836,14 @@ def geocode_home_address(address: str):
 
 def geocode_facility_record(rec):
     """事業所住所を検索し、成功時だけ正確な座標へ更新する。"""
-    result = geocode_yamanashi_address(rec.get("address", ""))
+    result, reason = geocode_yamanashi_address_diagnostic(rec.get("address", ""))
     if not result:
-        return False
+        return False, reason
     rec["lat"] = result["lat"]
     rec["lon"] = result["lon"]
     rec["geo_source"] = "geocoded"
     rec["geo_label"] = result.get("display_name", "")
-    return True
+    return True, "成功"
 
 
 def haversine_km(lat1, lon1, lat2, lon2):
@@ -1256,15 +1285,46 @@ else:
         else:
             progress = st.progress(0.0)
             ok = 0
+            debug_rows = []
             for idx, rec in enumerate(targets, start=1):
-                if geocode_facility_record(rec):
+                success, reason = geocode_facility_record(rec)
+                if success:
                     ok += 1
+                debug_rows.append({
+                    "事業所名": rec.get("name", ""),
+                    "検索住所": rec.get("address", ""),
+                    "結果": "成功" if success else "失敗",
+                    "理由・取得位置": rec.get("geo_label", "") if success else reason,
+                })
                 progress.progress(idx / len(targets))
                 if idx < len(targets):
                     time.sleep(1.05)
-            save_facilities(st.session_state.facilities)
-            st.success(f"{len(targets)}件を確認し、{ok}件の位置情報を住所から取得しました。")
-            st.rerun()
+
+            save_ok = save_facilities(st.session_state.facilities)
+            ng = len(targets) - ok
+
+            if ok > 0:
+                st.success(f"{len(targets)}件を確認：成功 {ok}件 / 失敗 {ng}件")
+            else:
+                st.error(f"{len(targets)}件を確認しましたが、位置情報を1件も取得できませんでした。")
+
+            if not save_ok:
+                st.warning("位置情報の保存に失敗しました。Streamlit Cloudでは再起動・再デプロイで消える場合があります。")
+
+            st.dataframe(pd.DataFrame(debug_rows), use_container_width=True, hide_index=True)
+
+            if ok == 0:
+                reasons = [row["理由・取得位置"] for row in debug_rows]
+                if all(str(r).startswith("HTTPエラー: 403") for r in reasons):
+                    st.warning("すべてHTTP 403です。ジオコーディングサービス側でアクセスを拒否されている可能性があります。")
+                elif all("タイムアウト" in str(r) or "通信エラー" in str(r) for r in reasons):
+                    st.warning("すべて通信系エラーです。Streamlit Cloudから外部サービスへ接続できていない可能性があります。")
+                elif all("住所候補が0件" in str(r) for r in reasons):
+                    st.warning("すべて住所候補0件です。住所表記と検索方法の見直しが必要です。")
+                elif all("山梨県判定の範囲外" in str(r) for r in reasons):
+                    st.warning("検索候補は取得できていますが、県内判定で弾かれています。判定範囲を調整できます。")
+
+            st.caption("※ 結果表を確認してから再実行してください。成功した事業所は次回の対象から外れます。")
 
     st.divider()
 
