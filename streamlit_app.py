@@ -25,7 +25,10 @@ import io
 import json
 import math
 import os
+import time
 import uuid
+
+import requests
 
 import folium
 import pandas as pd
@@ -756,6 +759,64 @@ def approx_latlon(address: str):
     return (base_lat + dx, base_lon + dy)
 
 
+@st.cache_data(ttl=86400 * 30, show_spinner=False)
+def geocode_yamanashi_address(address: str):
+    """山梨県内の住所を緯度・経度へ変換する。"""
+    address = (address or "").strip()
+    if not address:
+        return None
+
+    query = address if "山梨県" in address else f"山梨県{address}"
+    try:
+        response = requests.get(
+            "https://nominatim.openstreetmap.org/search",
+            params={
+                "q": query,
+                "format": "jsonv2",
+                "limit": 3,
+                "countrycodes": "jp",
+                "addressdetails": 1,
+            },
+            headers={"User-Agent": "yamanashi-welfare-facility-search/1.1"},
+            timeout=12,
+        )
+        response.raise_for_status()
+        results = response.json()
+        for item in results:
+            try:
+                lat = float(item["lat"])
+                lon = float(item["lon"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            # 山梨県を十分に含む範囲。誤って県外の同名住所を採用するのを防ぐ。
+            if 35.10 <= lat <= 36.05 and 138.10 <= lon <= 139.20:
+                return {
+                    "lat": lat,
+                    "lon": lon,
+                    "display_name": item.get("display_name", query),
+                }
+        return None
+    except (requests.RequestException, ValueError, TypeError):
+        return None
+
+
+def geocode_home_address(address: str):
+    """自宅住所用。入力住所はファイルへ保存しない。"""
+    return geocode_yamanashi_address(address)
+
+
+def geocode_facility_record(rec):
+    """事業所住所を検索し、成功時だけ正確な座標へ更新する。"""
+    result = geocode_yamanashi_address(rec.get("address", ""))
+    if not result:
+        return False
+    rec["lat"] = result["lat"]
+    rec["lon"] = result["lon"]
+    rec["geo_source"] = "geocoded"
+    rec["geo_label"] = result.get("display_name", "")
+    return True
+
+
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
     p1, p2 = math.radians(lat1), math.radians(lat2)
@@ -821,6 +882,8 @@ def build_default_facilities():
             "is_kofu": "甲府市" in rec["address"],
             "lat": lat,
             "lon": lon,
+            "geo_source": "approx",
+            "geo_label": "",
         })
     return facilities
 
@@ -851,11 +914,26 @@ def recompute_geo(rec):
     rec["is_kofu"] = "甲府市" in rec["address"]
     ll = approx_latlon(rec["address"])
     rec["lat"], rec["lon"] = (ll if ll else (None, None))
+    rec["geo_source"] = "approx"
+    rec["geo_label"] = ""
     return rec
 
 
+def normalize_loaded_facilities(data):
+    """旧JSONとの互換性を保つ。geo_sourceがない既存座標は近似扱い。"""
+    normalized = []
+    for rec in data:
+        rec = dict(rec)
+        rec.setdefault("geo_source", "approx")
+        rec.setdefault("geo_label", "")
+        rec.setdefault("region", get_region(rec.get("address", "")))
+        rec.setdefault("is_kofu", "甲府市" in rec.get("address", ""))
+        normalized.append(rec)
+    return normalized
+
+
 if "facilities" not in st.session_state:
-    st.session_state.facilities = load_facilities()
+    st.session_state.facilities = normalize_loaded_facilities(load_facilities())
 
 
 def facilities_df():
@@ -893,8 +971,8 @@ if mode == "🔎 利用者向け検索ページ":
 - 相談支援事業所、訪問・居宅系サービス、児童向けサービス、療養介護、福祉ホーム、盲人ホームは
   対象外です。
 - 空き状況・リハビリ専門職情報・FAX番号・指定年月日は掲載していません。
-- **地図上の位置は市町村単位の近似表示です。** 正確なジオコーディング（住所→緯度経度変換）を
-  行うには外部APIが必要なため、現時点では市町村の代表地点に基づく概算位置を表示しています。
+- 地図上の位置は、**住所検索済みの事業所は住所から取得した座標**を表示します。
+  未取得・住所検索に失敗した事業所のみ、市町村の代表地点に基づく概算位置を表示します。
 - **甲府市内の事業所については、詳細を甲府市役所障がい福祉課にお問い合わせください。**
 - 最新情報は必ず各事業所または市町村の障害福祉担当窓口にご確認ください。
             """
@@ -976,7 +1054,8 @@ if mode == "🔎 利用者向け検索ページ":
                 f"<b>{row['name']}</b><br>"
                 f"{row['address']}<br>"
                 f"TEL: {row['phone']}<br>"
-                f"サービス: {'、'.join(row['services'])}"
+                f"サービス: {'、'.join(row['services'])}<br>"
+                f"位置: {'住所検索済み' if row.get('geo_source') == 'geocoded' else '概算位置'}"
             )
             if row["is_kofu"]:
                 popup_html += "<br><b style='color:#b3221e;'>※甲府市役所障がい福祉課へ確認</b>"
@@ -1013,7 +1092,31 @@ if mode == "🔎 利用者向け検索ページ":
 
     # ---- 近隣検索タブ ----
     with tab_near:
-        st.markdown("お住まいの市町村を選ぶか、現在地を取得して、近い順に事業所を表示します。")
+        st.markdown("自宅住所・市町村・現在地のいずれかを基準に、近い順で事業所を表示します。")
+
+        st.markdown("#### 🏠 自宅住所から探す")
+        home_address = st.text_input(
+            "自宅住所",
+            placeholder="例：甲斐市篠原○○○-○（山梨県は省略できます）",
+            help="入力した住所はこのアプリのファイルには保存しません。住所検索時のみ位置の取得に使用します。",
+        )
+        if st.button("🔎 この住所から近い事業所を探す", type="primary"):
+            if not home_address.strip():
+                st.warning("自宅住所を入力してください。")
+            else:
+                with st.spinner("住所を確認しています…"):
+                    geo_result = geocode_home_address(home_address)
+                if geo_result:
+                    st.session_state["address_lat"] = geo_result["lat"]
+                    st.session_state["address_lon"] = geo_result["lon"]
+                    st.session_state["address_label"] = geo_result["display_name"]
+                    # 住所検索を選んだ場合は、以前取得した現在地より住所を優先する。
+                    st.session_state["near_search_mode"] = "address"
+                else:
+                    st.warning("住所の位置を確認できませんでした。番地まで含めて入力するか、市町村検索をご利用ください。")
+
+        st.divider()
+        st.markdown("#### 📍 市町村・現在地から探す")
         col1, col2 = st.columns([2, 1])
         with col1:
             home_muni = st.selectbox(
@@ -1021,27 +1124,41 @@ if mode == "🔎 利用者向け検索ページ":
                 options=["選択してください"] + MUNI_KEYS_SORTED,
             )
         with col2:
-            use_geo = False
             if HAS_GEO:
                 if st.button("📍 現在地を取得する"):
                     loc = get_geolocation()
                     if loc and "coords" in loc:
                         st.session_state["geo_lat"] = loc["coords"]["latitude"]
                         st.session_state["geo_lon"] = loc["coords"]["longitude"]
-                        use_geo = True
+                        st.session_state["near_search_mode"] = "geo"
                     else:
-                        st.warning("現在地を取得できませんでした。市町村選択をご利用ください。")
+                        st.warning("現在地を取得できませんでした。住所入力または市町村選択をご利用ください。")
             else:
                 st.caption("（現在地取得機能は現在この環境では利用できません）")
 
         user_lat = user_lon = None
-        if "geo_lat" in st.session_state and "geo_lon" in st.session_state:
+        search_source = None
+
+        # 明示的に押した検索方法を優先する。市町村を選択した場合はその選択を優先。
+        if home_muni != "選択してください":
+            user_lat, user_lon = MUNI_LATLON[home_muni]
+            search_source = "municipality"
+            st.session_state["near_search_mode"] = "municipality"
+            st.info(f"「{home_muni}」の代表地点からの距離（概算）で並べ替えます。")
+        elif (st.session_state.get("near_search_mode") == "address"
+              and "address_lat" in st.session_state
+              and "address_lon" in st.session_state):
+            user_lat = st.session_state["address_lat"]
+            user_lon = st.session_state["address_lon"]
+            search_source = "address"
+            st.success("入力した自宅住所を基準に、近い順で表示します。")
+            if st.session_state.get("address_label"):
+                st.caption(f"確認した地点：{st.session_state['address_label']}")
+        elif "geo_lat" in st.session_state and "geo_lon" in st.session_state:
             user_lat = st.session_state["geo_lat"]
             user_lon = st.session_state["geo_lon"]
-            st.success("現在地を取得しました。現在地からの距離で並べ替えます。")
-        elif home_muni != "選択してください":
-            user_lat, user_lon = MUNI_LATLON[home_muni]
-            st.info(f"「{home_muni}」の代表地点からの距離（概算）で並べ替えます。")
+            search_source = "geo"
+            st.success("現在地からの距離で並べ替えます。")
 
         if user_lat is not None and not filtered.empty:
             dist_df = filtered.dropna(subset=["lat", "lon"]).copy()
@@ -1049,7 +1166,24 @@ if mode == "🔎 利用者向け検索ページ":
                 lambda r: round(haversine_km(user_lat, user_lon, r["lat"], r["lon"]), 1), axis=1
             )
             dist_df = dist_df.sort_values("distance_km")
-            show_n2 = st.slider("表示件数（近い順）", 5, max(5, len(dist_df)), min(15, len(dist_df)), step=5)
+
+            approx_count = int((dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)) != "geocoded").sum())
+            if approx_count:
+                st.info(
+                    f"表示対象のうち {approx_count}件は位置情報が未確認のため、距離は概算です。"
+                    "住所検索済みの事業所は、住所から取得した座標で距離を計算しています。"
+                )
+
+            if len(dist_df) <= 5:
+                show_n2 = len(dist_df)
+            else:
+                show_n2 = st.slider(
+                    "表示件数（近い順）",
+                    5,
+                    len(dist_df),
+                    min(15, len(dist_df)),
+                    step=5,
+                )
             for _, row in dist_df.head(show_n2).iterrows():
                 badges = "".join(
                     f'<span class="badge {SERVICE_BADGE_CLASS.get(s, "badge-short")}">{s}</span>'
@@ -1058,6 +1192,7 @@ if mode == "🔎 利用者向け検索ページ":
                 st.markdown(
                     f"""<div class="fac-card">
                     <h3>{row['name']}（約{row['distance_km']}km）</h3>
+                    <p><b>位置情報：</b>{'住所検索済み' if row.get('geo_source') == 'geocoded' else '概算位置'}</p>
                     {badges}
                     <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
                     <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
@@ -1071,7 +1206,7 @@ if mode == "🔎 利用者向け検索ページ":
                         unsafe_allow_html=True,
                     )
         else:
-            st.caption("市町村を選択するか、現在地を取得すると、近い順の一覧が表示されます。")
+            st.caption("自宅住所を入力するか、市町村を選択するか、現在地を取得すると、近い順の一覧が表示されます。")
 
 
 # =============================================================================
@@ -1104,6 +1239,34 @@ else:
         "押すと反映されます。行の削除は行左端のチェックボックスを選び、キーボードの Delete "
         "キーまたは表下部の削除アイコンで行えます。"
     )
+
+    st.subheader("📍 事業所の位置情報を正確にする")
+    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") == "geocoded")
+    total_count = len(st.session_state.facilities)
+    st.progress(exact_count / total_count if total_count else 0.0)
+    st.caption(f"住所検索済み：{exact_count} / {total_count}件")
+    st.caption(
+        "未確認の事業所を住所から検索し、取得できた緯度・経度を facilities_data.json に保存します。"
+        "公開ジオコーディングサービスへの負荷を避けるため、1回につき最大15件ずつ処理します。"
+    )
+    if st.button("📌 未確認の事業所を15件更新する"):
+        targets = [r for r in st.session_state.facilities if r.get("geo_source") != "geocoded"][:15]
+        if not targets:
+            st.success("すべての事業所が住所検索済みです。")
+        else:
+            progress = st.progress(0.0)
+            ok = 0
+            for idx, rec in enumerate(targets, start=1):
+                if geocode_facility_record(rec):
+                    ok += 1
+                progress.progress(idx / len(targets))
+                if idx < len(targets):
+                    time.sleep(1.05)
+            save_facilities(st.session_state.facilities)
+            st.success(f"{len(targets)}件を確認し、{ok}件の位置情報を住所から取得しました。")
+            st.rerun()
+
+    st.divider()
 
     df = facilities_df()
     if df.empty:
@@ -1158,7 +1321,16 @@ else:
                 "org": str(row.get("設置経営主体", "") or "").strip(),
                 "services": services,
             }
-            rec = recompute_geo(rec)
+            old_rec = next((r for r in st.session_state.facilities if r.get("id") == rec["id"]), None)
+            if old_rec and old_rec.get("address") == address and old_rec.get("geo_source") == "geocoded":
+                rec["region"] = get_region(address)
+                rec["is_kofu"] = "甲府市" in address
+                rec["lat"] = old_rec.get("lat")
+                rec["lon"] = old_rec.get("lon")
+                rec["geo_source"] = "geocoded"
+                rec["geo_label"] = old_rec.get("geo_label", "")
+            else:
+                rec = recompute_geo(rec)
             new_records.append(rec)
 
         st.session_state.facilities = new_records
