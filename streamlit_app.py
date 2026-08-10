@@ -27,6 +27,8 @@ import math
 import os
 import time
 import uuid
+import re
+import zipfile
 
 import requests
 
@@ -846,6 +848,140 @@ def geocode_facility_record(rec):
     return True, "成功"
 
 
+
+# 国土地理院「住居表示住所」固定座標化用
+GSI_JUSHO_CITY_CODES = {
+    "甲府市": "19201",
+    "富士吉田市": "19202",
+    "都留市": "19204",
+    "大月市": "19206",
+    "韮崎市": "19207",
+    "上野原市": "19212",
+}
+
+_KANJI_DIGITS = "〇一二三四五六七八九"
+
+def _to_kanji_num(n: int) -> str:
+    if n < 10:
+        return _KANJI_DIGITS[n]
+    if n < 20:
+        return "十" + (_KANJI_DIGITS[n % 10] if n % 10 else "")
+    if n < 100:
+        return _KANJI_DIGITS[n // 10] + "十" + (_KANJI_DIGITS[n % 10] if n % 10 else "")
+    return str(n)
+
+def _normalize_digits(text: str) -> str:
+    return str(text).translate(str.maketrans("０１２３４５６７８９－―ー", "0123456789---"))
+
+def _parse_jusho_parts(address: str):
+    """住所から、市名・町名候補・街区・基礎番号候補を取り出す。"""
+    a = _normalize_digits(address or "").replace("山梨県", "")
+    city = next((c for c in GSI_JUSHO_CITY_CODES if c in a), None)
+    if not city:
+        return None
+    rest = a.split(city, 1)[1].strip()
+    rest = rest.replace("番地", "-").replace("番", "-").replace("号", "")
+    rest = re.sub(r"\s+", "", rest)
+
+    # ○丁目表記
+    m = re.match(r"^(.*?)(\d+)丁目[-]?(\d+)(?:[-](\d+))?", rest)
+    if m:
+        base, chome, block, basic = m.group(1), int(m.group(2)), m.group(3), m.group(4)
+        towns = [f"{base}{_to_kanji_num(chome)}丁目", f"{base}{chome}丁目"]
+        basics = [basic] if basic else ["1"]
+        return city, towns, str(int(block)), [str(int(x)) for x in basics if x]
+
+    # 町名 + 1-2-3 のような表記（最初の数字を丁目としても試す）
+    m = re.match(r"^(.*?)(\d+)[-](\d+)(?:[-](\d+))?", rest)
+    if m:
+        base, n1, n2, n3 = m.group(1), int(m.group(2)), m.group(3), m.group(4)
+        towns = [f"{base}{_to_kanji_num(n1)}丁目", f"{base}{n1}丁目", base]
+        block = str(int(n2))
+        basics = [str(int(n3))] if n3 else ["1"]
+        return city, towns, block, basics
+    return None
+
+def _pick_col(columns, aliases):
+    normalized = {str(c).replace(" ", "").replace("　", ""): c for c in columns}
+    for alias in aliases:
+        a = alias.replace(" ", "").replace("　", "")
+        if a in normalized:
+            return normalized[a]
+    for c in columns:
+        cs = str(c)
+        if any(alias in cs for alias in aliases):
+            return c
+    return None
+
+@st.cache_data(ttl=86400 * 30, show_spinner=False)
+def load_gsi_jusho_city(city_code: str):
+    """国土地理院の市区町村ZIPを読み込み、CSVを1つのDataFrameにまとめる。"""
+    url = f"https://saigai.gsi.go.jp/jusho/download/data/{city_code}.zip"
+    r = requests.get(url, timeout=30, headers={"User-Agent": "yamanashi-welfare-facility-search/2.0"})
+    r.raise_for_status()
+    frames = []
+    with zipfile.ZipFile(io.BytesIO(r.content)) as zf:
+        for name in zf.namelist():
+            if not name.lower().endswith(".csv"):
+                continue
+            raw = zf.read(name)
+            df = None
+            for enc in ("utf-8-sig", "utf-8", "cp932"):
+                try:
+                    df = pd.read_csv(io.BytesIO(raw), encoding=enc, dtype=str)
+                    break
+                except Exception:
+                    pass
+            if df is not None and not df.empty:
+                frames.append(df)
+    if not frames:
+        raise ValueError("ZIP内に利用できるCSVがありません")
+    return pd.concat(frames, ignore_index=True)
+
+def match_gsi_fixed_coordinate(rec):
+    parsed = _parse_jusho_parts(rec.get("address", ""))
+    if not parsed:
+        return False, "住居表示住所として解析できません"
+    city, town_candidates, block, basic_candidates = parsed
+    code = GSI_JUSHO_CITY_CODES[city]
+    try:
+        df = load_gsi_jusho_city(code)
+    except requests.HTTPError as e:
+        return False, f"国土地理院データ取得HTTPエラー: {getattr(e.response, 'status_code', '不明')}"
+    except requests.RequestException as e:
+        return False, f"国土地理院データ取得通信エラー: {type(e).__name__}"
+    except Exception as e:
+        return False, f"国土地理院データ読込エラー: {type(e).__name__}"
+
+    town_col = _pick_col(df.columns, ["町又は字の名称", "町または字の名称", "町字名"])
+    block_col = _pick_col(df.columns, ["街区符号", "街区"] )
+    basic_col = _pick_col(df.columns, ["基礎番号"])
+    lon_col = _pick_col(df.columns, ["経度(度単位10進数)", "経度"] )
+    lat_col = _pick_col(df.columns, ["緯度(度単位10進数)", "緯度"] )
+    if not all([town_col, block_col, basic_col, lon_col, lat_col]):
+        return False, "国土地理院CSVの列名を認識できません"
+
+    work = df.copy()
+    for c in (town_col, block_col, basic_col):
+        work[c] = work[c].fillna("").astype(str).str.strip()
+    town_norms = {t.replace(" ", "").replace("　", "") for t in town_candidates}
+    mask_town = work[town_col].str.replace(" ", "", regex=False).str.replace("　", "", regex=False).isin(town_norms)
+    subset = work[mask_town & (work[block_col].str.lstrip("0") == block.lstrip("0"))]
+    if subset.empty:
+        return False, f"町名・街区が一致しません: {town_candidates[0]} {block}街区"
+
+    exact = subset[subset[basic_col].str.lstrip("0").isin([b.lstrip("0") for b in basic_candidates])]
+    picked = exact.iloc[0] if not exact.empty else subset.iloc[0]
+    try:
+        lat = float(picked[lat_col]); lon = float(picked[lon_col])
+    except Exception:
+        return False, "一致データの緯度経度が不正です"
+    rec["lat"] = lat
+    rec["lon"] = lon
+    rec["geo_source"] = "gsi_fixed"
+    rec["geo_label"] = f"国土地理院 住居表示住所: {town_candidates[0]} {block}街区"
+    return True, rec["geo_label"]
+
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
     p1, p2 = math.radians(lat1), math.radians(lat2)
@@ -1084,7 +1220,7 @@ if mode == "🔎 利用者向け検索ページ":
                 f"{row['address']}<br>"
                 f"TEL: {row['phone']}<br>"
                 f"サービス: {'、'.join(row['services'])}<br>"
-                f"位置: {'住所検索済み' if row.get('geo_source') == 'geocoded' else '概算位置'}"
+                f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed'} else '概算位置'}"
             )
             if row["is_kofu"]:
                 popup_html += "<br><b style='color:#b3221e;'>※甲府市役所障がい福祉課へ確認</b>"
@@ -1221,7 +1357,7 @@ if mode == "🔎 利用者向け検索ページ":
                 st.markdown(
                     f"""<div class="fac-card">
                     <h3>{row['name']}（約{row['distance_km']}km）</h3>
-                    <p><b>位置情報：</b>{'住所検索済み' if row.get('geo_source') == 'geocoded' else '概算位置'}</p>
+                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed'} else '概算位置'}</p>
                     {badges}
                     <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
                     <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
@@ -1270,61 +1406,53 @@ else:
     )
 
     st.subheader("📍 事業所の位置情報を正確にする")
-    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") == "geocoded")
+    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") in {"geocoded", "gsi_fixed"})
     total_count = len(st.session_state.facilities)
     st.progress(exact_count / total_count if total_count else 0.0)
-    st.caption(f"住所検索済み：{exact_count} / {total_count}件")
+    st.caption(f"正確な位置を固定済み：{exact_count} / {total_count}件")
     st.caption(
-        "未確認の事業所を住所から検索し、取得できた緯度・経度を facilities_data.json に保存します。"
-        "公開ジオコーディングサービスへの負荷を避けるため、1回につき最大15件ずつ処理します。"
+        "国土地理院の『住居表示住所』データを一度読み込み、該当する事業所の座標を固定保存します。"
+        "公開ジオコーディングAPIへの個別問い合わせは行いません。"
     )
-    if st.button("📌 未確認の事業所を15件更新する"):
-        targets = [r for r in st.session_state.facilities if r.get("geo_source") != "geocoded"][:15]
+    st.info("対応市：甲府市・富士吉田市・都留市・大月市・韮崎市・上野原市。住居表示未実施地区は概算位置のまま残ります。")
+
+    if st.button("🗺️ 国土地理院データで位置を一括固定する", type="primary"):
+        targets = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed"}]
         if not targets:
-            st.success("すべての事業所が住所検索済みです。")
+            st.success("固定化できる事業所はすべて処理済みです。")
         else:
             progress = st.progress(0.0)
             ok = 0
-            debug_rows = []
+            rows = []
             for idx, rec in enumerate(targets, start=1):
-                success, reason = geocode_facility_record(rec)
+                city = next((c for c in GSI_JUSHO_CITY_CODES if c in rec.get("address", "")), None)
+                if city:
+                    success, reason = match_gsi_fixed_coordinate(rec)
+                else:
+                    success, reason = False, "国土地理院の住居表示住所データ対象外の市町村"
                 if success:
                     ok += 1
-                debug_rows.append({
+                rows.append({
                     "事業所名": rec.get("name", ""),
-                    "検索住所": rec.get("address", ""),
-                    "結果": "成功" if success else "失敗",
-                    "理由・取得位置": rec.get("geo_label", "") if success else reason,
+                    "住所": rec.get("address", ""),
+                    "結果": "固定済み" if success else "概算のまま",
+                    "詳細": reason,
                 })
                 progress.progress(idx / len(targets))
-                if idx < len(targets):
-                    time.sleep(1.05)
 
             save_ok = save_facilities(st.session_state.facilities)
-            ng = len(targets) - ok
-
-            if ok > 0:
-                st.success(f"{len(targets)}件を確認：成功 {ok}件 / 失敗 {ng}件")
-            else:
-                st.error(f"{len(targets)}件を確認しましたが、位置情報を1件も取得できませんでした。")
-
+            st.success(f"処理完了：正確な位置を {ok}件 固定しました。残り {len(targets)-ok}件は概算位置です。")
             if not save_ok:
-                st.warning("位置情報の保存に失敗しました。Streamlit Cloudでは再起動・再デプロイで消える場合があります。")
-
-            st.dataframe(pd.DataFrame(debug_rows), use_container_width=True, hide_index=True)
-
-            if ok == 0:
-                reasons = [row["理由・取得位置"] for row in debug_rows]
-                if all(str(r).startswith("HTTPエラー: 403") for r in reasons):
-                    st.warning("すべてHTTP 403です。ジオコーディングサービス側でアクセスを拒否されている可能性があります。")
-                elif all("タイムアウト" in str(r) or "通信エラー" in str(r) for r in reasons):
-                    st.warning("すべて通信系エラーです。Streamlit Cloudから外部サービスへ接続できていない可能性があります。")
-                elif all("住所候補が0件" in str(r) for r in reasons):
-                    st.warning("すべて住所候補0件です。住所表記と検索方法の見直しが必要です。")
-                elif all("山梨県判定の範囲外" in str(r) for r in reasons):
-                    st.warning("検索候補は取得できていますが、県内判定で弾かれています。判定範囲を調整できます。")
-
-            st.caption("※ 結果表を確認してから再実行してください。成功した事業所は次回の対象から外れます。")
+                st.warning("座標ファイルの保存に失敗しました。")
+            result_df = pd.DataFrame(rows)
+            st.dataframe(result_df, use_container_width=True, hide_index=True)
+            st.download_button(
+                "⬇️ 固定座標データ（facilities_data.json）を保存",
+                data=json.dumps(st.session_state.facilities, ensure_ascii=False, indent=2),
+                file_name="facilities_data.json",
+                mime="application/json",
+            )
+            st.caption("このJSONを streamlit_app.py と同じフォルダに置けば、再デプロイ後も固定座標をそのまま利用できます。")
 
     st.divider()
 
