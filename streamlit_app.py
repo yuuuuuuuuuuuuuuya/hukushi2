@@ -1073,6 +1073,64 @@ def match_gsi_search_coordinate(rec):
     return True, rec["geo_label"]
 
 
+def _norm_for_geo_check(text: str) -> str:
+    s = str(text or "")
+    s = s.replace("山梨県", "").replace("丁目", "-").replace("番地", "-").replace("番", "-").replace("号", "")
+    s = s.translate(str.maketrans("０１２３４５６７８９－ー―−", "0123456789-----"))
+    s = re.sub(r"\s+", "", s)
+    return s
+
+
+def analyze_suspicious_coordinates(records):
+    """住所検索補完のうち、代表点を拾っている可能性が高いものを自動抽出する。"""
+    coord_groups = {}
+    for rec in records:
+        try:
+            key = (round(float(rec.get("lat")), 6), round(float(rec.get("lon")), 6))
+        except (TypeError, ValueError):
+            continue
+        coord_groups.setdefault(key, []).append(rec)
+
+    results = []
+    for rec in records:
+        if rec.get("geo_source") != "gsi_search":
+            continue
+        reasons = []
+        priority = 0
+        try:
+            key = (round(float(rec.get("lat")), 6), round(float(rec.get("lon")), 6))
+        except (TypeError, ValueError):
+            key = None
+
+        if key is not None:
+            peers = coord_groups.get(key, [])
+            distinct_addresses = {str(x.get("address", "")) for x in peers if x.get("address")}
+            if len(distinct_addresses) >= 2:
+                priority = max(priority, 2)
+                reasons.append(f"異なる住所{len(distinct_addresses)}件が同じ座標")
+
+        address = _norm_for_geo_check(rec.get("address", ""))
+        label = _norm_for_geo_check(rec.get("geo_label", ""))
+        addr_nums = re.findall(r"\d+", address)
+        label_nums = set(re.findall(r"\d+", label))
+        if addr_nums and not any(n in label_nums for n in addr_nums[-2:]):
+            priority = max(priority, 1)
+            reasons.append("住所の番地情報が検索結果ラベルに見当たらない")
+
+        if priority:
+            results.append({
+                "優先度": "高" if priority >= 2 else "中",
+                "事業所名": rec.get("name", ""),
+                "住所": rec.get("address", ""),
+                "検索結果": str(rec.get("geo_label", "")).replace("地理院地図住所検索: ", ""),
+                "緯度": rec.get("lat"),
+                "経度": rec.get("lon"),
+                "要確認理由": "／".join(reasons),
+            })
+    results.sort(key=lambda x: (0 if x["優先度"] == "高" else 1, x["住所"]))
+    return results
+
+
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
     p1, p2 = math.radians(lat1), math.radians(lat2)
@@ -1229,7 +1287,6 @@ if mode == "🔎 利用者向け検索ページ":
 - 空き状況・リハビリ専門職情報・FAX番号・指定年月日は掲載していません。
 - 地図上の位置は、**住所検索済みの事業所は住所から取得した座標**を表示します。
   未取得・住所検索に失敗した事業所のみ、市町村の代表地点に基づく概算位置を表示します。
-- **甲府市内の事業所については、詳細を甲府市役所障がい福祉課にお問い合わせください。**
 - 最新情報は必ず各事業所または市町村の障害福祉担当窓口にご確認ください。
             """
         )
@@ -1313,8 +1370,6 @@ if mode == "🔎 利用者向け検索ページ":
                 f"サービス: {'、'.join(row['services'])}<br>"
                 f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search'} else '概算位置'}"
             )
-            if row["is_kofu"]:
-                popup_html += "<br><b style='color:#b3221e;'>※甲府市役所障がい福祉課へ確認</b>"
             folium.Marker(
                 location=[row["lat"], row["lon"]],
                 tooltip=row["name"],
@@ -1339,12 +1394,6 @@ if mode == "🔎 利用者向け検索ページ":
                     st.write(f"**所在地：** {row['address']}（{row['region']}圏域）")
                     st.write(f"**電話番号：** {row['phone'] or '—'}")
                     st.write(f"**定員：** {row['capacity'] if row['capacity'] else '—'} 人")
-                    if row["is_kofu"]:
-                        st.markdown(
-                            '<div class="kofu-note">この事業所は甲府市内にあります。'
-                            '詳細は甲府市役所障がい福祉課へお問い合わせください。</div>',
-                            unsafe_allow_html=True,
-                        )
 
     # ---- 近隣検索タブ ----
     with tab_near:
@@ -1455,12 +1504,6 @@ if mode == "🔎 利用者向け検索ページ":
                     </div>""",
                     unsafe_allow_html=True,
                 )
-                if row["is_kofu"]:
-                    st.markdown(
-                        '<div class="kofu-note">この事業所は甲府市内にあります。'
-                        '詳細は甲府市役所障がい福祉課へお問い合わせください。</div>',
-                        unsafe_allow_html=True,
-                    )
         else:
             st.caption("自宅住所を入力するか、市町村を選択するか、現在地を取得すると、近い順の一覧が表示されます。")
 
@@ -1583,6 +1626,25 @@ else:
                 key="download_after_gsi_search",
             )
             st.caption("ダウンロードしたJSONでGitHub上の facilities_data.json を上書きしてください。")
+
+    st.markdown("#### 🔍 位置が怪しい可能性のある事業所を確認")
+    st.caption(
+        "住所検索で補完した事業所のうち、①異なる住所なのに同じ座標になっている、"
+        "②番地付き住所なのに検索結果ラベルから番地情報が落ちている、のどちらかを自動抽出します。"
+    )
+    suspicious_rows = analyze_suspicious_coordinates(st.session_state.facilities)
+    if suspicious_rows:
+        high_n = sum(1 for x in suspicious_rows if x["優先度"] == "高")
+        mid_n = len(suspicious_rows) - high_n
+        st.warning(f"要確認候補：{len(suspicious_rows)}件（高 {high_n}件／中 {mid_n}件）")
+        suspicious_df = pd.DataFrame(suspicious_rows)
+        priority_filter = st.radio("表示する優先度", ["高のみ", "高＋中"], horizontal=True, key="geo_suspicious_filter")
+        if priority_filter == "高のみ":
+            suspicious_df = suspicious_df[suspicious_df["優先度"] == "高"]
+        st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=420)
+        st.caption("まず『高』を地図や公式サイト等で確認するのがおすすめです。『中』は街区・町丁目の代表点である可能性を含む候補です。")
+    else:
+        st.success("現在の自動判定では、強く疑わしい位置は見つかりませんでした。")
 
     st.divider()
 
