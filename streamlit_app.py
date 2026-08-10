@@ -928,7 +928,23 @@ def load_gsi_jusho_city(city_code: str):
             df = None
             for enc in ("utf-8-sig", "utf-8", "cp932"):
                 try:
-                    df = pd.read_csv(io.BytesIO(raw), encoding=enc, dtype=str)
+                    df = pd.read_csv(
+                        io.BytesIO(raw),
+                        encoding=enc,
+                        dtype=str,
+                        header=None,
+                        names=[
+                            "市区町村コード",
+                            "町又は字の名称",
+                            "街区符号",
+                            "基礎番号",
+                            "住所コード（可読）",
+                            "住所コード（数値）",
+                            "経度",
+                            "緯度",
+                            "地図情報レベル",
+                        ],
+                    )
                     break
                 except Exception:
                     pass
