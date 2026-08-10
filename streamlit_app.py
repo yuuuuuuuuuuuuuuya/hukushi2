@@ -1131,6 +1131,95 @@ def analyze_suspicious_coordinates(records):
     return results
 
 
+
+
+def geocode_gsi_name_address_diagnostic(name: str, address: str):
+    """事業所名＋住所で再検索し、現在座標との突合用候補を返す。"""
+    queries = []
+    name = str(name or '').strip()
+    address = str(address or '').strip()
+    if name and address:
+        queries.append(f"山梨県 {name} {address}")
+        queries.append(f"{name} {address}")
+    if name:
+        queries.append(f"山梨県 {name}")
+    seen = set()
+    for query in queries:
+        if not query or query in seen:
+            continue
+        seen.add(query)
+        try:
+            r = requests.get(
+                GSI_ADDRESS_SEARCH_URL,
+                params={"q": query},
+                headers={"User-Agent": "yamanashi-welfare-facility-search/4.0"},
+                timeout=20,
+            )
+            r.raise_for_status()
+            data = r.json()
+            features = data if isinstance(data, list) else data.get("features", []) if isinstance(data, dict) else []
+            for feat in features:
+                try:
+                    coords = feat.get("geometry", {}).get("coordinates", [])
+                    lon, lat = float(coords[0]), float(coords[1])
+                except Exception:
+                    continue
+                if 35.10 <= lat <= 36.05 and 138.10 <= lon <= 139.20:
+                    props = feat.get("properties", {}) if isinstance(feat, dict) else {}
+                    title = props.get("title") or query
+                    return {"lat": lat, "lon": lon, "display_name": str(title), "query": query}, "成功"
+        except requests.Timeout:
+            return None, "通信タイムアウト"
+        except requests.RequestException as e:
+            return None, f"通信エラー: {type(e).__name__}"
+        except Exception as e:
+            return None, f"応答解析エラー: {type(e).__name__}"
+    return None, "候補0件"
+
+def auto_recheck_suspicious(records, suspicious_rows):
+    """要確認候補を事業所名＋住所で再検索し、現在座標との差で自動再判定する。"""
+    by_key = {(str(r.get("name", "")), str(r.get("address", ""))): r for r in records}
+    checked = []
+    for row in suspicious_rows:
+        rec = by_key.get((str(row.get("事業所名", "")), str(row.get("住所", ""))))
+        if not rec:
+            continue
+        result, reason = geocode_gsi_name_address_diagnostic(rec.get("name", ""), rec.get("address", ""))
+        current_lat, current_lon = rec.get("lat"), rec.get("lon")
+        if result and current_lat is not None and current_lon is not None:
+            try:
+                diff = round(haversine_km(float(current_lat), float(current_lon), result["lat"], result["lon"]), 3)
+            except Exception:
+                diff = None
+            if diff is not None and diff <= 0.15:
+                verdict = "問題なさそう"
+            elif diff is not None and diff <= 0.5:
+                verdict = "概ね一致"
+            elif diff is not None and diff <= 2.0:
+                verdict = "要確認"
+            else:
+                verdict = "要確認（ズレ大）"
+            checked.append({
+                "優先度": row.get("優先度", ""),
+                "事業所名": rec.get("name", ""),
+                "住所": rec.get("address", ""),
+                "現在位置とのズレ(km)": diff,
+                "再検索結果": result.get("display_name", ""),
+                "判定": verdict,
+                "再検索クエリ": result.get("query", ""),
+            })
+        else:
+            checked.append({
+                "優先度": row.get("優先度", ""),
+                "事業所名": rec.get("name", ""),
+                "住所": rec.get("address", ""),
+                "現在位置とのズレ(km)": None,
+                "再検索結果": reason,
+                "判定": "手動確認",
+                "再検索クエリ": "",
+            })
+    return checked
+
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
     p1, p2 = math.radians(lat1), math.radians(lat2)
@@ -1643,6 +1732,23 @@ else:
             suspicious_df = suspicious_df[suspicious_df["優先度"] == "高"]
         st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=420)
         st.caption("まず『高』を地図や公式サイト等で確認するのがおすすめです。『中』は街区・町丁目の代表点である可能性を含む候補です。")
+
+        st.markdown("##### 🤖 自動で再精査")
+        st.caption("要確認候補を『事業所名＋住所』で再検索し、現在位置とのズレを比較します。ズレが小さい候補は手作業確認から外せます。")
+        if st.button("🤖 要確認候補を自動再精査する", key="auto_recheck_suspicious"):
+            with st.spinner("再検索して位置を比較しています…"):
+                rechecked = auto_recheck_suspicious(st.session_state.facilities, suspicious_rows)
+                st.session_state["geo_rechecked_rows"] = rechecked
+
+        rechecked = st.session_state.get("geo_rechecked_rows", [])
+        if rechecked:
+            re_df = pd.DataFrame(rechecked)
+            okay_mask = re_df["判定"].isin(["問題なさそう", "概ね一致"])
+            st.success(f"自動精査：{int(okay_mask.sum())}件は大きなズレが見つかりませんでした。残り {int((~okay_mask).sum())}件を優先確認してください。")
+            only_need = st.checkbox("要確認だけ表示", value=True, key="show_only_recheck_needed")
+            shown = re_df[~okay_mask] if only_need else re_df
+            st.dataframe(shown, use_container_width=True, hide_index=True, height=420)
+
     else:
         st.success("現在の自動判定では、強く疑わしい位置は見つかりませんでした。")
 
