@@ -1076,7 +1076,7 @@ def match_gsi_search_coordinate(rec):
 def _norm_for_geo_check(text: str) -> str:
     s = str(text or "")
     s = s.replace("山梨県", "").replace("丁目", "-").replace("番地", "-").replace("番", "-").replace("号", "")
-    s = s.translate(str.maketrans("０１２３４５６７８９－ー―−", "0123456789-----"))
+    s = s.translate(str.maketrans("０１２３４５６７８９－ー―−", "0123456789----"))
     s = re.sub(r"\s+", "", s)
     return s
 
