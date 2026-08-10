@@ -12,10 +12,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.67859894712749,
-    "lon": 138.5662761730373,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.573345,
+    "lon": 138.601578,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市心経寺町４９０番地"
   },
   {
     "id": "a4bfe8a4-938e-5c50-b462-85f14920a892",
@@ -49,10 +49,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.6651734493019,
-    "lon": 138.57002348363469,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.710361,
+    "lon": 138.559662,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市下帯那町"
   },
   {
     "id": "3d237b06-1bd1-57bb-b65c-4035f1b8fafc",
@@ -68,10 +68,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.64993426413367,
-    "lon": 138.56243685053786,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.623108,
+    "lon": 138.595901,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市西油川町"
   },
   {
     "id": "f2e66f53-0320-5b7c-8740-e1db48ba39dd",
@@ -86,10 +86,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.66488871595331,
-    "lon": 138.5797332570382,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.647011,
+    "lon": 138.610809,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市向町２７７番地"
   },
   {
     "id": "e0fa8a50-6e57-51b0-89df-3ae7e0eb9aea",
@@ -104,10 +104,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71654538796063,
-    "lon": 138.4417299610895,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.668137,
+    "lon": 138.444092,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條南割３２５１番地"
   },
   {
     "id": "172e9e17-27fa-5041-b179-fb4bce5d7686",
@@ -124,10 +124,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.70901826504921,
-    "lon": 138.44397166399634,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.671432,
+    "lon": 138.432755,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條南割"
   },
   {
     "id": "171de5b1-37cc-588c-bd1d-1ab99c0d84dd",
@@ -143,10 +143,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.704350377660795,
-    "lon": 138.429706614786,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.671432,
+    "lon": 138.432755,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條南割"
   },
   {
     "id": "ab32fbf4-caf6-5eb8-a073-90fff7559c22",
@@ -162,10 +162,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.69304893568322,
-    "lon": 138.45028935683223,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "0a6cd9e1-5fbb-5b4b-b8a3-464166ad7cce",
@@ -180,10 +180,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62645175097276,
-    "lon": 138.465228564889,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.663723,
+    "lon": 138.440887,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３３０３番地"
   },
   {
     "id": "c9702dd5-53e9-56a2-bc1f-172b98b63d51",
@@ -200,10 +200,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62956779583429,
-    "lon": 138.48224664682994,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658997,
+    "lon": 138.440704,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野"
   },
   {
     "id": "afef171e-7d6a-5a76-a4b4-8e8b21623866",
@@ -218,10 +218,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.809804371709774,
-    "lon": 138.41405410849163,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "168b5809-4d99-5c78-9bc2-8345ce9a3b23",
@@ -236,10 +236,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79956129549096,
-    "lon": 138.41117976653695,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.884762,
+    "lon": 138.350693,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町小荒間"
   },
   {
     "id": "07f6307f-3361-56b5-b2c7-61237e09c11b",
@@ -254,10 +254,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.801310894941636,
-    "lon": 138.40481629663537,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.884762,
+    "lon": 138.350693,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町小荒間"
   },
   {
     "id": "f1579be1-2bbf-50d7-bd71-232c72c9e31f",
@@ -272,10 +272,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.80055877775235,
-    "lon": 138.41121821927214,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.79528,
+    "lon": 138.267776,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市白州町白須"
   },
   {
     "id": "3636a5ad-bd52-51be-b1db-7497b0504882",
@@ -290,10 +290,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.663172968642705,
-    "lon": 138.51473222705422,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.706955,
+    "lon": 138.519424,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市牛句"
   },
   {
     "id": "867554e3-662a-5dc0-9b65-495b2807a106",
@@ -308,10 +308,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68249775692378,
-    "lon": 138.53448274204624,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.672562,
+    "lon": 138.50351,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市竜王２６７番地"
   },
   {
     "id": "b54f4572-5073-5106-bdf1-0fbce801818d",
@@ -327,10 +327,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70762446784161,
-    "lon": 138.6911798580911,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.666653,
+    "lon": 138.671509,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市大野１５５１番地"
   },
   {
     "id": "49cfa32e-9728-5a34-a0ba-eced528eab58",
@@ -345,10 +345,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70757136644541,
-    "lon": 138.66753508812084,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.7579,
+    "lon": 138.714417,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市牧丘町室伏"
   },
   {
     "id": "e7af8964-3d78-5607-b509-732cd5a57d8a",
@@ -363,10 +363,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.700245662623026,
-    "lon": 138.67056415655756,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.847103,
+    "lon": 138.781586,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市三富川浦"
   },
   {
     "id": "f037a538-3e7d-5ce6-b339-bcf518da9d3a",
@@ -380,10 +380,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.6521328221561,
-    "lon": 138.6756846875715,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.618492,
+    "lon": 138.65564,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市八代町北１７５番地"
   },
   {
     "id": "81a1ae82-2e52-52a7-bac1-3f41f23c0eb8",
@@ -398,10 +398,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.71385575646601,
-    "lon": 138.7580202792401,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.67942,
+    "lon": 138.726273,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市勝沼町山１４０５番地"
   },
   {
     "id": "38964236-f189-54bf-a2f2-711bb190bfbb",
@@ -416,10 +416,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.5326767223621,
-    "lon": 138.4873927443351,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.53043,
+    "lon": 138.446777,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町鰍沢"
   },
   {
     "id": "b4e86250-cb6e-5e4a-be0e-aba27db64ced",
@@ -434,10 +434,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.371736942092014,
-    "lon": 138.46145648889905,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.378922,
+    "lon": 138.408005,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県身延町身延３６３７番地"
   },
   {
     "id": "a81604b6-0a45-52ce-9576-5c2ce9f5e568",
@@ -452,10 +452,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.54110915541314,
-    "lon": 138.91033501945526,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.565659,
+    "lon": 138.839966,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市大幡"
   },
   {
     "id": "0439557d-7579-5a7d-b7e3-42553415297c",
@@ -470,10 +470,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.59259162279698,
-    "lon": 138.92674332799265,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.623318,
+    "lon": 138.983185,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市富浜町宮谷１５１０番地"
   },
   {
     "id": "17d136b3-d1ac-582d-b106-183e29e8f969",
@@ -487,10 +487,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.45917116044862,
-    "lon": 138.84445312428474,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.458946,
+    "lon": 138.815231,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県忍野村忍草２７４８番地"
   },
   {
     "id": "36da4394-75fb-58a0-b732-1cb3b855600a",
@@ -504,10 +504,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.50869633783474,
-    "lon": 138.7713664682994,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.485401,
+    "lon": 138.76709,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町船津６６６３番地"
   },
   {
     "id": "7dfd2142-74d9-5286-b019-72a3bd1f39f1",
@@ -539,10 +539,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.664223117418175,
-    "lon": 138.55464330510415,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.709244,
+    "lon": 138.597443,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上積翠寺町１００３番地"
   },
   {
     "id": "5cf07b79-1cb2-5251-acd6-f96505ce9bb4",
@@ -556,10 +556,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.658530281528954,
-    "lon": 138.58195985351338,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.631119,
+    "lon": 138.584824,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上町１４６１番地"
   },
   {
     "id": "2a8bfbac-9c12-5a2d-9ac5-76f8e1786b5a",
@@ -574,10 +574,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.670713389791715,
-    "lon": 138.56108734264134,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.636425,
+    "lon": 138.587189,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上町２４７３番地"
   },
   {
     "id": "9dce58b2-a2ee-5f1d-9c51-1e46e71a1b7a",
@@ -649,10 +649,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65125767910277,
-    "lon": 138.56364994277865,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.710361,
+    "lon": 138.559662,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市下帯那町"
   },
   {
     "id": "eb6b5d88-fd48-5088-9550-73c2e76c4052",
@@ -666,10 +666,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.66186880292973,
-    "lon": 138.57407795834285,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.677086,
+    "lon": 138.566742,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市天神町１１番３５号"
   },
   {
     "id": "6f36ef2e-7ef9-585c-9f74-9adb8043952f",
@@ -703,10 +703,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65986056305791,
-    "lon": 138.57896923781186,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.636814,
+    "lon": 138.598434,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市西高橋町３２８番地"
   },
   {
     "id": "ac58e5f0-c170-595f-81ba-7a33457e48c0",
@@ -720,10 +720,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.676999954222936,
-    "lon": 138.5561127489128,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.696598,
+    "lon": 138.583832,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市下積翠寺町"
   },
   {
     "id": "7ce9af63-abc1-534b-a785-bb151af4590d",
@@ -737,10 +737,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.658845227740905,
-    "lon": 138.57456960402837,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.647011,
+    "lon": 138.610809,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市向町２８４番地"
   },
   {
     "id": "99ec66db-ab24-578b-a6e4-9ba3c0225d59",
@@ -788,10 +788,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.6521420920119,
-    "lon": 138.5716133211261,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.691059,
+    "lon": 138.548828,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市羽黒町１２７２番地"
   },
   {
     "id": "d2c9c0cf-6ed5-54b5-9800-eaed65efe707",
@@ -843,10 +843,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.67300956740673,
-    "lon": 138.57064513618676,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.631805,
+    "lon": 138.5634,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市後屋町３３０番地"
   },
   {
     "id": "10525c2c-5a51-50bd-8fb0-1b1e67357697",
@@ -860,10 +860,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65842453650721,
-    "lon": 138.564852964065,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.69376,
+    "lon": 138.546753,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市羽黒町"
   },
   {
     "id": "62a2dc1a-3c7e-5f27-8221-5e5117b5393d",
@@ -912,10 +912,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.663467795834286,
-    "lon": 138.57483831540398,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.665947,
+    "lon": 138.535217,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市中村町１０番２２号"
   },
   {
     "id": "0a0717b9-2670-5c41-b492-735b141a0fd4",
@@ -930,10 +930,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65857926298924,
-    "lon": 138.56360508125428,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.611679,
+    "lon": 138.574142,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市東下条町"
   },
   {
     "id": "a8b819a1-d872-5bfa-8f84-aaf352b3d501",
@@ -948,10 +948,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71687910276951,
-    "lon": 138.42675536736095,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "ce0fc3af-886f-5499-9416-1502af82b01d",
@@ -966,10 +966,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.705852323186086,
-    "lon": 138.43866839093613,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "aefdbf76-5072-5be2-83c3-2042a9fa0ffd",
@@ -984,10 +984,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.692273014419776,
-    "lon": 138.43181968413825,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.680153,
+    "lon": 138.461761,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市龍岡町下條東割７７５番地"
   },
   {
     "id": "ccb1b06c-11ef-5b95-b8a8-0c74296357c8",
@@ -1001,10 +1001,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.69630048065919,
-    "lon": 138.436955413138,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.710754,
+    "lon": 138.460129,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市岩下１２３２番地"
   },
   {
     "id": "46b3e7e6-874c-5632-9a1e-5c7caca1c2b9",
@@ -1018,10 +1018,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.69705626001373,
-    "lon": 138.4493399404898,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.707741,
+    "lon": 138.456711,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市富士見二丁目１５番２７号"
   },
   {
     "id": "4a74e364-015a-51e8-8d92-4134178bb90f",
@@ -1036,10 +1036,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.70025424582284,
-    "lon": 138.42671187914854,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.741184,
+    "lon": 138.431839,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市中田町中條"
   },
   {
     "id": "f007d728-916e-539a-af08-1cc7bbaad5ff",
@@ -1053,10 +1053,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62637988097963,
-    "lon": 138.47588683909362,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658997,
+    "lon": 138.440704,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野"
   },
   {
     "id": "fba4380f-a0a6-59f2-ad85-6dd1520a586b",
@@ -1070,10 +1070,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.61352659647517,
-    "lon": 138.46109077592126,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.660561,
+    "lon": 138.439087,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２５９番地"
   },
   {
     "id": "c75c3875-0e8c-5730-9272-76b36790e1e3",
@@ -1087,10 +1087,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.628059899290456,
-    "lon": 138.45895481803618,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.640781,
+    "lon": 138.4599,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市飯野２９３９番地"
   },
   {
     "id": "1003cc9e-12dc-58c8-a594-fc73924ed275",
@@ -1106,10 +1106,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.60766118104829,
-    "lon": 138.47001181048296,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.619301,
+    "lon": 138.444778,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市上宮地１１４３番地"
   },
   {
     "id": "99bd7521-1b74-5937-84f2-cbaf18d1ba57",
@@ -1123,10 +1123,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6066563744564,
-    "lon": 138.47003424124514,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.609749,
+    "lon": 138.487,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市寺部１９９番地"
   },
   {
     "id": "56b8bad4-2b07-5573-bd7c-c193f1ccf146",
@@ -1141,10 +1141,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.620828038452736,
-    "lon": 138.4675046005951,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.600906,
+    "lon": 138.504654,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市藤田２１１４番地"
   },
   {
     "id": "fec90265-5182-5365-a15e-8e3f01fc66ed",
@@ -1159,10 +1159,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62148402380407,
-    "lon": 138.46478864728772,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.595413,
+    "lon": 138.504898,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市藤田４６０４番地"
   },
   {
     "id": "35c732fc-f6df-5ef5-956a-5ec8acfe3355",
@@ -1176,10 +1176,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62516495765622,
-    "lon": 138.46481382467385,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658211,
+    "lon": 138.46814,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市百々２３５５番地"
   },
   {
     "id": "6733e98d-6da1-509b-8779-94e94c4dbbc5",
@@ -1193,10 +1193,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.78665262073701,
-    "lon": 138.41377395284962,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.858891,
+    "lon": 138.352066,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町大井ヶ森"
   },
   {
     "id": "1fab7ede-7e14-5277-b9bc-a36b9a5668e9",
@@ -1210,10 +1210,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79103119707027,
-    "lon": 138.42060801098648,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.819832,
+    "lon": 138.42688,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市高根町箕輪"
   },
   {
     "id": "3ad223b3-798a-55eb-89e2-ab0716a83d33",
@@ -1228,10 +1228,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.789019752803846,
-    "lon": 138.4022372167544,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.847984,
+    "lon": 138.413345,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市高根町村山北割"
   },
   {
     "id": "4c589885-fb83-5399-8b38-5b03d7863494",
@@ -1246,10 +1246,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79097260242619,
-    "lon": 138.41884925612268,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.805405,
+    "lon": 138.377701,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町長坂下条"
   },
   {
     "id": "9118f97b-d45a-5faa-98ec-705b713aef31",
@@ -1263,10 +1263,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.799947653925386,
-    "lon": 138.39844046692605,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.805405,
+    "lon": 138.377701,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町長坂下条"
   },
   {
     "id": "376bfccb-7024-5bbf-96fc-fb885666bb1f",
@@ -1281,10 +1281,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.785908285648894,
-    "lon": 138.40003030441747,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.806049,
+    "lon": 138.391983,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町塚川"
   },
   {
     "id": "b3bc64cb-fe19-5a8b-a4b9-8cb11908a0f9",
@@ -1298,10 +1298,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.807423048752575,
-    "lon": 138.42155925841152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "2e8bf432-9581-50be-929e-6751ad7b2dd1",
@@ -1316,10 +1316,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68400611123827,
-    "lon": 138.5291703135729,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659199,
+    "lon": 138.520065,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市篠原３０００番地"
   },
   {
     "id": "73eb7704-5d81-5083-929b-3d75524c0608",
@@ -1335,10 +1335,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.66982437628748,
-    "lon": 138.5208929045548,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.680431,
+    "lon": 138.501892,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市下今井２６５０番地"
   },
   {
     "id": "f2c642e6-cd4e-5f7a-949f-d6050a4f0876",
@@ -1353,10 +1353,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.65999695582513,
-    "lon": 138.53139004348822,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.688965,
+    "lon": 138.515762,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市天狗沢"
   },
   {
     "id": "520a940a-ad0e-5b2f-8946-24e181e939db",
@@ -1370,10 +1370,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.683836736095216,
-    "lon": 138.53193936827648,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.678432,
+    "lon": 138.526016,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市中下条９５４番地"
   },
   {
     "id": "dd79a687-c10d-581e-a444-7e90f9d4926a",
@@ -1388,10 +1388,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6865687113756,
-    "lon": 138.5365363012131,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.683319,
+    "lon": 138.525467,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市中下条１２１４番地"
   },
   {
     "id": "f51d0126-3908-5f55-b39f-9ab7dc14e2df",
@@ -1405,10 +1405,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68249775692378,
-    "lon": 138.53448274204624,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.672562,
+    "lon": 138.50351,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市竜王２６７番地"
   },
   {
     "id": "46fc8d41-c834-5bd2-9fb1-00562a1e6dcf",
@@ -1422,10 +1422,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.67162799267567,
-    "lon": 138.52496157015335,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.64806,
+    "lon": 138.52681,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市篠原８８４番地"
   },
   {
     "id": "9a1d3cbd-64d3-552a-b5f7-75c793eee40d",
@@ -1439,10 +1439,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62255369649805,
-    "lon": 138.5380362325475,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.604294,
+    "lon": 138.513672,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市臼井阿原１６５３番地"
   },
   {
     "id": "e27a0926-79d8-5cb1-8317-73ba1d4a9a0a",
@@ -1457,10 +1457,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.59513323414969,
-    "lon": 138.54917196154727,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.612049,
+    "lon": 138.509399,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市山之神１５２２番地"
   },
   {
     "id": "98da9648-e47b-5e78-a912-6611f5db0dac",
@@ -1474,10 +1474,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.632635454337375,
-    "lon": 138.5561214007782,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.614368,
+    "lon": 138.527252,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町河西１０６番地"
   },
   {
     "id": "4f57cd97-9664-5409-bf09-b200ea0f8c00",
@@ -1492,10 +1492,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.61475355916686,
-    "lon": 138.5538293430991,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.621983,
+    "lon": 138.541824,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町紙漉阿原１８０８番地"
   },
   {
     "id": "869b5cb9-84ab-59ce-a1c0-4fbfb846c1e0",
@@ -1509,10 +1509,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.64357296864271,
-    "lon": 138.54392455939575,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.622643,
+    "lon": 138.5466,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町紙漉阿原２４５７番地"
   },
   {
     "id": "96c612fe-820c-527e-b5a5-79704499904e",
@@ -1526,10 +1526,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.694386198214694,
-    "lon": 138.6885138017853,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.674393,
+    "lon": 138.68396,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市下石森５２４番地"
   },
   {
     "id": "69653280-1038-56a7-9e0b-6e79ac7750d3",
@@ -1543,10 +1543,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.680171503776606,
-    "lon": 138.67894914168002,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.695091,
+    "lon": 138.6996,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市小原東"
   },
   {
     "id": "685f6faa-032f-5b68-bad6-bb13cc1d07fe",
@@ -1560,10 +1560,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.684951087205306,
-    "lon": 138.68166646829937,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.703022,
+    "lon": 138.699219,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市七日市場７５５番地"
   },
   {
     "id": "8e7e9b65-fd4b-562f-b566-fa46a27bf9ef",
@@ -1577,10 +1577,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70310684367132,
-    "lon": 138.73854900434884,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.712105,
+    "lon": 138.783554,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山中萩原"
   },
   {
     "id": "c2b6d3f2-a722-590c-96b5-05a8b0ee67ca",
@@ -1595,10 +1595,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70678091096361,
-    "lon": 138.74027800411994,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.674118,
+    "lon": 138.724091,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市勝沼町小佐手６３３番地"
   },
   {
     "id": "e7ac5198-daa8-5331-afa9-dcb2fb202264",
@@ -1613,10 +1613,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.629829320210575,
-    "lon": 138.66446518654152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.630241,
+    "lon": 138.632812,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町小石和１８０２番地"
   },
   {
     "id": "078a4816-b725-543f-822e-842a10516e0d",
@@ -1630,10 +1630,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.63530288395514,
-    "lon": 138.67275678644998,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.639336,
+    "lon": 138.635086,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町四日市場"
   },
   {
     "id": "6c3fdaab-73cb-5891-8c20-9738040d85f4",
@@ -1647,10 +1647,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.62949285877775,
-    "lon": 138.68633975738155,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.673756,
+    "lon": 138.662857,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市春日居町桑戸３０２番地"
   },
   {
     "id": "d8291f05-0c9a-5a7f-a71b-1123402a9c79",
@@ -1664,10 +1664,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.62708040741588,
-    "lon": 138.6711921263447,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.645611,
+    "lon": 138.649902,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町下平井３２９番地"
   },
   {
     "id": "1c4202c1-92dc-5dfa-a9ee-59388242bb7b",
@@ -1682,10 +1682,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.637776676585034,
-    "lon": 138.68307356374456,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.64793,
+    "lon": 138.674072,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市一宮町竹原田"
   },
   {
     "id": "53ff3a30-2560-5506-8373-e8318a5a0020",
@@ -1699,10 +1699,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.54037367818723,
-    "lon": 138.5017365300984,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.545822,
+    "lon": 138.459625,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町鰍沢１５８６番地"
   },
   {
     "id": "e267f477-3c2d-5528-b399-9886b78dd0a8",
@@ -1717,10 +1717,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.523405035477225,
-    "lon": 138.49610274662393,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.571358,
+    "lon": 138.466736,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町長澤"
   },
   {
     "id": "c636a086-92e3-5d47-841e-215276899964",
@@ -1734,10 +1734,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.39322286564431,
-    "lon": 138.46759839780267,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.390427,
+    "lon": 138.458206,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県身延町帯金"
   },
   {
     "id": "b7f6c50e-c7c8-595d-8404-70e34a97d871",
@@ -1751,10 +1751,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.567882032501714,
-    "lon": 138.55459748226139,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.53178,
+    "lon": 138.466721,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町黒沢"
   },
   {
     "id": "28b6f485-4e12-54a4-b865-147c5568d74b",
@@ -1768,10 +1768,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.49922407873655,
-    "lon": 138.81564241245135,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.478008,
+    "lon": 138.783722,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士吉田市松山１４１０番地"
   },
   {
     "id": "c78e22a0-43be-5ebc-8728-7ff5da7ecd85",
@@ -1806,10 +1806,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.472456397344935,
-    "lon": 138.80858587777524,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.503296,
+    "lon": 138.812668,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士吉田市富士見四丁目１１番"
   },
   {
     "id": "35151177-95ae-565f-b733-504b86a02aa5",
@@ -1841,10 +1841,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.54521169604028,
-    "lon": 138.89394591439688,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.575081,
+    "lon": 138.94133,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市井倉"
   },
   {
     "id": "3f9f342b-fa5c-5b48-bc80-d29e8c7ea118",
@@ -1858,10 +1858,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.56653739986267,
-    "lon": 138.90287015335318,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.536682,
+    "lon": 138.871735,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市桂町１４３６番地"
   },
   {
     "id": "87cba55b-018a-5699-8b80-0e3335451c00",
@@ -1877,10 +1877,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.601002243076216,
-    "lon": 138.95245127031356,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.616161,
+    "lon": 138.91925,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市賑岡町浅利１１０８番地"
   },
   {
     "id": "59daa4f0-5793-5157-bc24-0988e47ec67e",
@@ -1895,10 +1895,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.617631792172126,
-    "lon": 139.01539684138248,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.625435,
+    "lon": 139.10495,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県上野原市上野原２２８３番地"
   },
   {
     "id": "3d550d3f-76ea-5897-8db2-281c26a06f19",
@@ -1912,10 +1912,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.608242915999085,
-    "lon": 139.0246891279469,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.628128,
+    "lon": 139.110855,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県上野原市上野原２０７５番地"
   },
   {
     "id": "863ff6e2-0837-5b72-98e8-84cf8b26cc8f",
@@ -1930,10 +1930,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.4868126115816,
-    "lon": 138.77809295033188,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.507164,
+    "lon": 138.742416,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町勝山２９８番地"
   },
   {
     "id": "02451792-db6c-5a40-9869-0282da648c91",
@@ -1947,10 +1947,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.489582581826504,
-    "lon": 138.76507120622568,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.50441,
+    "lon": 138.753418,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町小立２４８７番地"
   },
   {
     "id": "4feeeaab-f2b7-539c-af4d-eff9927fccc3",
@@ -1964,10 +1964,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.50629075303273,
-    "lon": 138.77342506294346,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.503845,
+    "lon": 138.749557,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町小立２３２２番地"
   },
   {
     "id": "1e3609cb-5b72-5a8d-836c-27e17a1b4a49",
@@ -1982,10 +1982,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.673236621652556,
-    "lon": 138.55915509269855,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.564869,
+    "lon": 138.589401,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市右左口町"
   },
   {
     "id": "110f0487-229c-5ae5-b18c-531fcd9463b0",
@@ -1999,10 +1999,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71356301213092,
-    "lon": 138.45068303959715,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.665459,
+    "lon": 138.436188,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條南割３３１４番地"
   },
   {
     "id": "5e80f298-16a0-557d-b85a-923381353b79",
@@ -2017,10 +2017,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.612190363927674,
-    "lon": 138.46239542229344,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659664,
+    "lon": 138.439926,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２４３番地"
   },
   {
     "id": "a80d3075-6962-5de9-8435-b9e61da14cb8",
@@ -2034,10 +2034,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68189487296864,
-    "lon": 138.53097392996108,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.665962,
+    "lon": 138.517776,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市竜王新町１番地"
   },
   {
     "id": "695926d2-d5c0-566c-b0c6-9ccdf73b26e5",
@@ -2051,10 +2051,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.64152490272374,
-    "lon": 138.6824505378805,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.655563,
+    "lon": 138.63739,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町駅前１２番"
   },
   {
     "id": "bd02598e-9e89-55e0-91a7-6a0a5092f64a",
@@ -2069,10 +2069,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.6330451590753,
-    "lon": 138.68738667887388,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.642132,
+    "lon": 138.698441,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市一宮町神沢１０２番地"
   },
   {
     "id": "e1c0ee6d-a4e5-5004-987f-8b0c8ead38bb",
@@ -2194,10 +2194,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.66157949187457,
-    "lon": 138.55686623941406,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.621799,
+    "lon": 138.556335,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市宮原町９４番地"
   },
   {
     "id": "36940d3d-4b79-5908-ae95-4fdcb4344d2c",
@@ -2212,10 +2212,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.67345589379721,
-    "lon": 138.56444371709773,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.660374,
+    "lon": 138.61232,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市横根町１０１０番地"
   },
   {
     "id": "21c70b5e-ba33-5603-a8ae-4d6ce2b8d195",
@@ -2230,10 +2230,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.657078690775926,
-    "lon": 138.58217454795147,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.656364,
+    "lon": 138.607773,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市横根町１５０番地"
   },
   {
     "id": "77bf4450-7961-5457-8870-1ae7729889f4",
@@ -2299,10 +2299,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.635136575875485,
-    "lon": 138.4772647287709,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.644409,
+    "lon": 138.455429,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市飯野２０８８番地"
   },
   {
     "id": "d5916623-e5be-5f4c-a07c-5f8cd3015a41",
@@ -2318,10 +2318,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6151736552987,
-    "lon": 138.4802365758755,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.579857,
+    "lon": 138.482391,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市和泉"
   },
   {
     "id": "0730afa5-7c11-5feb-81f8-0b9a5cbee053",
@@ -2336,10 +2336,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62516495765622,
-    "lon": 138.46481382467385,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658211,
+    "lon": 138.46814,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市百々２３５５番地"
   },
   {
     "id": "ea37ac93-937a-5764-9aca-6244b7d03f90",
@@ -2354,10 +2354,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68766415655756,
-    "lon": 138.51904625772488,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.686478,
+    "lon": 138.526535,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市島上条１２７７番地"
   },
   {
     "id": "18f47393-cd35-54ec-89dd-98cce6e6098a",
@@ -2373,10 +2373,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.669576722362095,
-    "lon": 138.5318107347219,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.693226,
+    "lon": 138.494324,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市岩森１０７９番地"
   },
   {
     "id": "1107a733-9c38-5dcb-b688-b241cb8c333a",
@@ -2391,10 +2391,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.621294369420916,
-    "lon": 138.5279469672694,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.603687,
+    "lon": 138.54892,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市成島"
   },
   {
     "id": "5a5634b9-16c8-50f8-b944-55bb5aed63be",
@@ -2409,10 +2409,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70278777752346,
-    "lon": 138.75178635843443,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.702343,
+    "lon": 138.738571,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山赤尾６５０番地"
   },
   {
     "id": "68c49409-9943-5514-ab77-7bfdf928b09f",
@@ -2463,10 +2463,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.494309063859006,
-    "lon": 138.7500622796979,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.50441,
+    "lon": 138.753418,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町小立２４８７番地"
   },
   {
     "id": "9232aedc-f951-5993-9478-31b4c398882f",
@@ -2481,10 +2481,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.49054802014191,
-    "lon": 138.77769194323645,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.488014,
+    "lon": 138.746124,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町小立"
   },
   {
     "id": "3f0aa0af-4bbb-5fbd-b2bd-de9bf0a9c4f4",
@@ -2498,10 +2498,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.48985678644999,
-    "lon": 138.7760004806592,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.493111,
+    "lon": 138.765869,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町船津３３４７番地"
   },
   {
     "id": "9d8cb79a-551b-5341-ad9e-bcf48c5250f6",
@@ -2618,10 +2618,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.656975234607465,
-    "lon": 138.56000563057907,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.631374,
+    "lon": 138.570282,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市中小河原町５６８番地"
   },
   {
     "id": "987679f2-c19a-5c62-a543-4d77b54c8a46",
@@ -2636,10 +2636,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.70343620965896,
-    "lon": 138.45070959029525,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.728283,
+    "lon": 138.423843,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市下祖母石２３０１番地"
   },
   {
     "id": "857ac36d-bcdc-551b-b7c4-4ed2b8b2d17d",
@@ -2654,10 +2654,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62990700389105,
-    "lon": 138.46802005035477,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.604301,
+    "lon": 138.43425,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市中野４８６番地"
   },
   {
     "id": "dd27151c-e50b-5301-a18d-c4817dea6e2e",
@@ -2671,10 +2671,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62593721675441,
-    "lon": 138.4781463950561,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.632034,
+    "lon": 138.494125,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市下今諏訪３５１番地"
   },
   {
     "id": "afa7e1bb-d330-5aeb-b023-ff0ea897c9c0",
@@ -2688,10 +2688,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.624546967269396,
-    "lon": 138.4773837491417,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.641342,
+    "lon": 138.454742,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市飯野"
   },
   {
     "id": "e9895057-0456-5374-b4be-ce62557bad31",
@@ -2705,10 +2705,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.792236964980546,
-    "lon": 138.3969604943923,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.788879,
+    "lon": 138.414566,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市須玉町若神子"
   },
   {
     "id": "0194b062-036c-5759-b1ea-ce6c011ecd18",
@@ -2722,10 +2722,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.61374252689402,
-    "lon": 138.54788745708402,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.595535,
+    "lon": 138.556122,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市極楽寺１２８４番地"
   },
   {
     "id": "56678282-ea4a-55d6-8bba-d6204bd39abe",
@@ -2739,10 +2739,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.60929130235752,
-    "lon": 138.48097312886244,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.654125,
+    "lon": 138.500885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市下高砂２２３番地"
   },
   {
     "id": "86ade7cc-6059-5aa6-be96-47db5f6ba410",
@@ -2757,10 +2757,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.603521881437395,
-    "lon": 138.54469862668805,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.593266,
+    "lon": 138.514786,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市西花輪２７１７番地"
   },
   {
     "id": "7f38c1f2-cc5c-5a6b-9cb8-64dc674ad1ae",
@@ -2774,10 +2774,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.65336102082856,
-    "lon": 138.68805914396887,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.654728,
+    "lon": 138.63623,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町駅前１３番"
   },
   {
     "id": "67408545-c4f0-5cfe-9e22-9e9e3381a31f",
@@ -2791,10 +2791,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.632250469214924,
-    "lon": 138.6884642710002,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.676521,
+    "lon": 138.657883,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市春日居町別田６１８番地"
   },
   {
     "id": "c3e49187-5357-5bfe-a2db-333e3302b47f",
@@ -2843,10 +2843,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.62824291599909,
-    "lon": 139.01964998855573,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.629944,
+    "lon": 139.10997,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県上野原市上野原３７９７番地"
   },
   {
     "id": "17c8d546-b4d3-550f-bb96-8fe431d8a76e",
@@ -2860,10 +2860,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.516058205539025,
-    "lon": 138.76505655756466,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.494186,
+    "lon": 138.766922,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町船津３１４８番地"
   },
   {
     "id": "8eb9b5c3-1781-508c-9611-ed3862c7bdbd",
@@ -2877,10 +2877,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.66399011215381,
-    "lon": 138.56136017395283,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.655743,
+    "lon": 138.621048,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市川田町５８番地"
   },
   {
     "id": "fc1cb9ee-3605-5462-baae-6cc104a0e0b8",
@@ -3030,10 +3030,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.6521420920119,
-    "lon": 138.5716133211261,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.691059,
+    "lon": 138.548828,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市羽黒町１２７２番地"
   },
   {
     "id": "be6b2637-385c-52fb-9948-400455d3fdcb",
@@ -3183,10 +3183,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65570858319982,
-    "lon": 138.5630388189517,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.653538,
+    "lon": 138.62059,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市和戸町１１９５番地"
   },
   {
     "id": "ac6da95e-efb5-5234-b10c-2cc0bbdbec15",
@@ -3285,10 +3285,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71424142824445,
-    "lon": 138.43115591668573,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.696705,
+    "lon": 138.454498,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市龍岡町若尾新田５１７番地"
   },
   {
     "id": "c06b324d-3dcf-5c10-b31f-65bbfff8d1d8",
@@ -3302,10 +3302,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.701778164339665,
-    "lon": 138.4396406958114,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.694,
+    "lon": 138.458908,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市龍岡町若尾新田８４９番地"
   },
   {
     "id": "30adece5-9952-5e2a-b645-ecdbff24b26e",
@@ -3319,10 +3319,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62116266880293,
-    "lon": 138.48260325017168,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659695,
+    "lon": 138.435791,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３０２３番地"
   },
   {
     "id": "d5f50fdc-6118-5e70-8766-317770a9fe33",
@@ -3336,10 +3336,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6206499656672,
-    "lon": 138.4631489127947,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659664,
+    "lon": 138.439926,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２３６番地"
   },
   {
     "id": "c02721a3-4f1c-5b5d-9403-a3235a14a8c6",
@@ -3353,10 +3353,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62301938658732,
-    "lon": 138.45783785763334,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.583279,
+    "lon": 138.464508,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市落合１００番地"
   },
   {
     "id": "03e45295-e94d-53a0-832c-59ced1afa438",
@@ -3370,10 +3370,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.612392698558025,
-    "lon": 138.46367077134357,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.586231,
+    "lon": 138.463959,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市落合２０３番地"
   },
   {
     "id": "7434db81-b7ae-558b-b6aa-9f761f1f988c",
@@ -3387,10 +3387,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.61843160906386,
-    "lon": 138.45812030212863,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.603855,
+    "lon": 138.462997,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市下宮地４２１番地"
   },
   {
     "id": "92cd914b-0e58-5789-8a7d-c019e370caa4",
@@ -3404,10 +3404,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62838857862211,
-    "lon": 138.4602841840238,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.590103,
+    "lon": 138.489029,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市西南湖３２番地"
   },
   {
     "id": "091d49ab-3527-5557-a8ec-97f2131ab7b3",
@@ -3421,10 +3421,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.63141947814145,
-    "lon": 138.48102851911193,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.667282,
+    "lon": 138.463165,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市六科５６５番地"
   },
   {
     "id": "2d3bfc79-033e-50de-a299-2219e3cca307",
@@ -3438,10 +3438,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.63012032501717,
-    "lon": 138.47662247653926,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.664757,
+    "lon": 138.491104,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市野牛島１７４５番地"
   },
   {
     "id": "731442d7-7362-5b7d-b8b4-99bac39ec148",
@@ -3455,10 +3455,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.809804371709774,
-    "lon": 138.41405410849163,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "063360f1-b13c-5d51-8ef1-5d8f0e019a1e",
@@ -3472,10 +3472,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.797295788509956,
-    "lon": 138.4189517967498,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.814781,
+    "lon": 138.440857,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市須玉町小倉"
   },
   {
     "id": "fcbd2a55-be5b-5281-a4a1-46887b030e03",
@@ -3489,10 +3489,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79103119707027,
-    "lon": 138.42060801098648,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.819832,
+    "lon": 138.42688,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市高根町箕輪"
   },
   {
     "id": "5beef8bc-1a3d-5c08-861d-83d3594f3bfc",
@@ -3506,10 +3506,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.80678079652095,
-    "lon": 138.3986798809796,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.749619,
+    "lon": 138.314697,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市武川町柳澤"
   },
   {
     "id": "338bf5fa-5e2b-512d-8d0e-2caef1e6c649",
@@ -3523,10 +3523,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.661858709086744,
-    "lon": 138.52071162737468,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.706955,
+    "lon": 138.519424,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市牛句"
   },
   {
     "id": "e02e37e9-59db-5fd3-a0ec-a0356784b79b",
@@ -3540,10 +3540,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.684905630579074,
-    "lon": 138.52813071641108,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.706955,
+    "lon": 138.519424,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市牛句"
   },
   {
     "id": "96c7d5c2-7b25-566e-93e2-7e9c0dfbb7f7",
@@ -3557,10 +3557,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68039567406729,
-    "lon": 138.54217237354084,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.678886,
+    "lon": 138.521881,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市中下条８５１番地"
   },
   {
     "id": "e3437a72-f236-596a-b3d1-bfe633482e6d",
@@ -3574,10 +3574,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.676759601739526,
-    "lon": 138.5333241245136,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.691307,
+    "lon": 138.498215,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市龍地５１１０番地"
   },
   {
     "id": "5c545043-2e56-5e0f-90e0-15ffe07a54bb",
@@ -3591,10 +3591,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.66489006637674,
-    "lon": 138.53035593957426,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.690723,
+    "lon": 138.49852,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市龍地６５５９番地"
   },
   {
     "id": "1bc798a3-8203-5891-8211-1460fd7f9052",
@@ -3608,10 +3608,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6626016708629,
-    "lon": 138.51567843900204,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.682137,
+    "lon": 138.505981,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市龍地３５７９番地"
   },
   {
     "id": "78ddc7bd-299f-5ee8-bd7d-3a26a08c31e6",
@@ -3625,10 +3625,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.67456916914625,
-    "lon": 138.52345962462806,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.68586,
+    "lon": 138.512238,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市龍地６０２１番地"
   },
   {
     "id": "54fe3413-803a-5a33-b98d-9cbc72bab828",
@@ -3642,10 +3642,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.67891524376287,
-    "lon": 138.533102105745,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.631588,
+    "lon": 138.521118,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市玉川１４３９番地"
   },
   {
     "id": "e5cf9af4-62d5-5a65-83c4-980d34aecc13",
@@ -3659,10 +3659,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.620295056076905,
-    "lon": 138.55307537193866,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.573421,
+    "lon": 138.565521,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市木原"
   },
   {
     "id": "9bd95e9d-b03d-5110-bb48-b302d0e8fca5",
@@ -3676,10 +3676,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.614228221561,
-    "lon": 138.55081718928818,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.603313,
+    "lon": 138.544754,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市成島２２２５番地"
   },
   {
     "id": "d185cef2-b300-5cbc-a5b3-8f10c8244944",
@@ -3693,10 +3693,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6180062027924,
-    "lon": 138.5480344014649,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.587467,
+    "lon": 138.522949,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県中央市西花輪３６９番地"
   },
   {
     "id": "f40c0da1-5020-5bfc-9543-b3900f81d00c",
@@ -3710,10 +3710,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62352307164111,
-    "lon": 138.55183392080568,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.640846,
+    "lon": 138.544586,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町西条５１５９番地"
   },
   {
     "id": "9a1351a0-4916-5486-b7f8-8c7d64e54a8d",
@@ -3727,10 +3727,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.639229640650036,
-    "lon": 138.56128276493476,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.638248,
+    "lon": 138.532974,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町西条新田４０１番地"
   },
   {
     "id": "0dbfac81-e1e7-500a-b10e-8b7928f9af44",
@@ -3744,10 +3744,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.6942905241474,
-    "lon": 138.69216452277408,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.71516,
+    "lon": 138.678574,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市市川"
   },
   {
     "id": "a17d694e-976b-58de-a7f1-9acebac9670e",
@@ -3761,10 +3761,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70837704280155,
-    "lon": 138.68251105516137,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.685894,
+    "lon": 138.665176,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市落合８６０番地"
   },
   {
     "id": "ac89a493-d5bb-52c1-9948-8f78d9c44638",
@@ -3778,10 +3778,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.707289837491416,
-    "lon": 138.69179235523004,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.678623,
+    "lon": 138.679062,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市下神内川５０５番地"
   },
   {
     "id": "40e17c1e-eb6d-55fe-ae14-921fd56a618d",
@@ -3795,10 +3795,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70753657587549,
-    "lon": 138.67558498512244,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.690022,
+    "lon": 138.683685,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市上神内川１３６３番地"
   },
   {
     "id": "c49d861b-d309-5033-b922-5bca74b48f84",
@@ -3812,10 +3812,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.68979246967269,
-    "lon": 138.67154882124055,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.675983,
+    "lon": 138.683365,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市下石森７２３番地"
   },
   {
     "id": "c48570dd-4119-535f-82fd-d7d0f988622a",
@@ -3829,10 +3829,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70087006179904,
-    "lon": 138.67818329137103,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.680126,
+    "lon": 138.668259,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市正徳寺４９０番地"
   },
   {
     "id": "65dc5a6a-4367-5adf-b545-cb0d8030feb8",
@@ -3846,10 +3846,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.63335552758068,
-    "lon": 138.6752154726482,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658928,
+    "lon": 138.642822,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町山崎１３２番地"
   },
   {
     "id": "93e17bbb-05f1-5245-827d-33bba9e4e719",
@@ -3863,10 +3863,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.64688310826276,
-    "lon": 138.66916191348133,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.65736,
+    "lon": 138.648682,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町川中島３８５番地"
   },
   {
     "id": "b6d4d7b4-7ea1-57d0-929a-9872bba0cc54",
@@ -3880,10 +3880,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.62949285877775,
-    "lon": 138.68633975738155,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.673756,
+    "lon": 138.662857,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市春日居町桑戸３０２番地"
   },
   {
     "id": "53278917-ecd3-5ee3-845e-8582cf6cb34d",
@@ -3897,10 +3897,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.63895635156786,
-    "lon": 138.66547960631723,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.640167,
+    "lon": 138.651321,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市御坂町成田"
   },
   {
     "id": "e7b2a277-b530-56b8-96eb-77ab87ad3d22",
@@ -3914,10 +3914,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.642200114442666,
-    "lon": 138.68064509040968,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.620899,
+    "lon": 138.649536,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市八代町北"
   },
   {
     "id": "4e625eba-8560-5562-855f-151e30303868",
@@ -3931,10 +3931,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.722773586633096,
-    "lon": 138.73461675440606,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.702564,
+    "lon": 138.72644,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山上於曽９３３番地"
   },
   {
     "id": "ec6d9ec6-f493-520c-94ab-81f6ec1c84ee",
@@ -3948,10 +3948,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.71422151522088,
-    "lon": 138.7402509956512,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.727573,
+    "lon": 138.76207,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山中萩原１３０９番地"
   },
   {
     "id": "e2fe16ce-8a00-5ddd-9fd7-c5d390b3bb49",
@@ -3965,10 +3965,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.69742316319524,
-    "lon": 138.74873714808882,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.67942,
+    "lon": 138.726273,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市勝沼町山１４０９番地"
   },
   {
     "id": "e383ff74-4711-5289-ac83-2361d0b4b6ec",
@@ -3982,10 +3982,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.72199171435111,
-    "lon": 138.7536623025864,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.652096,
+    "lon": 138.721237,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市勝沼町下岩崎"
   },
   {
     "id": "50f62a96-90e5-52f4-93e9-8555c0cf3fe1",
@@ -3999,10 +3999,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.55758036163882,
-    "lon": 138.55125346761272,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.555416,
+    "lon": 138.508926,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町市川大門４７９６番地"
   },
   {
     "id": "93f0b32e-24d0-53b2-a376-fdd30e0d3796",
@@ -4016,10 +4016,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.568774227512016,
-    "lon": 138.56998315403985,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.56184,
+    "lon": 138.511749,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町上野１７６番地"
   },
   {
     "id": "90665d71-2c52-59e2-b573-96710ca0277d",
@@ -4033,10 +4033,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.557710826276036,
-    "lon": 138.5585613183795,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.560444,
+    "lon": 138.522003,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町上野"
   },
   {
     "id": "7002b349-1d41-5b63-a3ca-275c6acfb338",
@@ -4050,10 +4050,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.57216859693293,
-    "lon": 138.5731848020142,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.539104,
+    "lon": 138.473907,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町黒沢８８０番地"
   },
   {
     "id": "d49a9c58-c03f-5c38-9e0e-ce0f2242f4f5",
@@ -4067,10 +4067,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.522081162737464,
-    "lon": 138.4902158159762,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.557819,
+    "lon": 138.464355,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町青柳町４９８番地"
   },
   {
     "id": "0c9d368d-74a5-53b0-88ca-5f01dc6ad0af",
@@ -4084,10 +4084,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.54160325017166,
-    "lon": 138.48914325932708,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.570908,
+    "lon": 138.460236,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町長澤３９９番地"
   },
   {
     "id": "a7295324-4db4-5f83-96ac-f00bf1b7d0a8",
@@ -4101,10 +4101,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.527421972991526,
-    "lon": 138.48104804303043,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.563034,
+    "lon": 138.461731,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町天神中條１０４１番地"
   },
   {
     "id": "d8eb863e-b617-5f2c-bf5d-b5723f7e6b66",
@@ -4118,10 +4118,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.52354145113298,
-    "lon": 138.50055868619822,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.567799,
+    "lon": 138.465149,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町長澤９９２番地"
   },
   {
     "id": "3905a0ba-708b-5de0-96ed-ee5e8933225e",
@@ -4169,10 +4169,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.485333028152894,
-    "lon": 138.81470032043947,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.479755,
+    "lon": 138.781006,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士吉田市松山１２４８番地"
   },
   {
     "id": "4f403a9a-83b7-5bc5-9fa8-36469eeac3cc",
@@ -4186,10 +4186,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.570821217669945,
-    "lon": 138.90251355001143,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.547676,
+    "lon": 138.917709,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市法能５６５番地"
   },
   {
     "id": "a04c54b8-09de-52e5-9dfe-965430bcf8e3",
@@ -4237,10 +4237,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.552474227512015,
-    "lon": 138.91265408560312,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.572475,
+    "lon": 138.926956,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市古川渡６３２番地"
   },
   {
     "id": "3a8e741d-b255-5fcf-a375-307212d287de",
@@ -4254,10 +4254,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.60666349279011,
-    "lon": 138.93518507667656,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.638893,
+    "lon": 138.874191,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市大月町真木"
   },
   {
     "id": "fab58897-94cf-5437-ba04-4fb81159f21d",
@@ -4271,10 +4271,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.618720256351565,
-    "lon": 138.92717500572212,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.604656,
+    "lon": 138.93869,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市大月町花咲１４４０番地"
   },
   {
     "id": "165dc96a-002b-585d-87f6-72efabd40c8f",
@@ -4288,10 +4288,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.626204921034564,
-    "lon": 139.00657148088808,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.629478,
+    "lon": 139.11763,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県上野原市上野原１５００番地"
   },
   {
     "id": "7125a078-cab2-598e-a8c1-1f39fb74404f",
@@ -4305,10 +4305,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.50932073701076,
-    "lon": 138.77790343327993,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.496532,
+    "lon": 138.734848,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町大嵐５２２番地"
   },
   {
     "id": "9739963b-0707-5370-9173-eccadae868e6",
@@ -4322,10 +4322,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.51297374685283,
-    "lon": 138.77699201190205,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.488575,
+    "lon": 138.735428,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町勝山"
   },
   {
     "id": "f6faf540-264f-522a-8765-e1c0074d4130",
@@ -4373,10 +4373,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.612190363927674,
-    "lon": 138.46239542229344,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659664,
+    "lon": 138.439926,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２４３番地"
   },
   {
     "id": "492d68db-3cb1-5167-a3d3-e02d39acfbd7",
@@ -4390,10 +4390,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62167354085603,
-    "lon": 138.47087653925385,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.589615,
+    "lon": 138.469894,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市古市場２４３番地"
   },
   {
     "id": "654504a8-5228-50e4-a0c3-f8e524081cf1",
@@ -4407,10 +4407,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.809804371709774,
-    "lon": 138.41405410849163,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "924f1405-c713-51ee-885b-2b5471be1839",
@@ -4424,10 +4424,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79097260242619,
-    "lon": 138.41884925612268,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.805405,
+    "lon": 138.377701,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町長坂下条"
   },
   {
     "id": "cbb1ba2d-99a4-5c18-bcda-f14ac03f0eba",
@@ -4441,10 +4441,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.80344227512017,
-    "lon": 138.40449539940488,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.895557,
+    "lon": 138.326645,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市小淵沢町"
   },
   {
     "id": "3645ab0a-a614-51f5-865a-a328d23e3d43",
@@ -4458,10 +4458,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68249775692378,
-    "lon": 138.53448274204624,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.672562,
+    "lon": 138.50351,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市竜王２６７番地"
   },
   {
     "id": "6078c42a-033c-5829-b5ed-b9aa4a76a36d",
@@ -4475,10 +4475,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.64042945754177,
-    "lon": 138.55660846875713,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.6362,
+    "lon": 138.537979,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町西条２０１４番地"
   },
   {
     "id": "b1fd6952-a203-55fa-9293-376370607c2d",
@@ -4492,10 +4492,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.69847271686885,
-    "lon": 138.6755419546807,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.682167,
+    "lon": 138.662262,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市落合"
   },
   {
     "id": "c191ec27-40c4-575d-bce9-a89539e00c5f",
@@ -4509,10 +4509,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70884854657816,
-    "lon": 138.67747328908217,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.696712,
+    "lon": 138.686905,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市小原東１３０９番地"
   },
   {
     "id": "711e475e-2268-5220-88ff-98c82a712ac6",
@@ -4543,10 +4543,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65867035934997,
-    "lon": 138.5802029297322,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.655396,
+    "lon": 138.547302,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市貢川本町８番３２号"
   },
   {
     "id": "c4c87a3c-ed8e-5363-9bfc-adea5e368ea4",
@@ -4577,10 +4577,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.66289787136645,
-    "lon": 138.57255587090867,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.69257,
+    "lon": 138.56102,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市和田町３００３番地"
   },
   {
     "id": "040204b9-08d1-5a48-8ea1-b7386788a91e",
@@ -4594,10 +4594,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.659933348592354,
-    "lon": 138.55824504463263,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.636089,
+    "lon": 138.589584,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市増坪町８０番地"
   },
   {
     "id": "76e247ad-ab9c-5eda-b408-cde554233be3",
@@ -4611,10 +4611,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.65736708628977,
-    "lon": 138.5768424353399,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.613667,
+    "lon": 138.557922,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市宮原町１２９２番地"
   },
   {
     "id": "168ccf57-acef-54f7-a99f-13b6cbae1792",
@@ -4696,10 +4696,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.664223117418175,
-    "lon": 138.55464330510415,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.709244,
+    "lon": 138.597443,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上積翠寺町１００３番地"
   },
   {
     "id": "89e313df-7f31-502c-9722-65e5559f3241",
@@ -4817,10 +4817,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.67022449073014,
-    "lon": 138.57355335317007,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.631374,
+    "lon": 138.570282,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市中小河原町５６６番地"
   },
   {
     "id": "8e3c4fac-b111-55fc-9785-3cbc13102bdd",
@@ -4835,10 +4835,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.6747390249485,
-    "lon": 138.5813894712749,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.67202,
+    "lon": 138.575058,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市元紺屋町１５番地"
   },
   {
     "id": "c5d6ff86-c8c9-5a3c-b2f8-2bb40a54d626",
@@ -4853,10 +4853,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.665107530327305,
-    "lon": 138.5538417486839,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.636814,
+    "lon": 138.598434,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市西高橋町３２８番地"
   },
   {
     "id": "a6657a92-e84b-5e6e-9628-a2f8772b62d3",
@@ -4887,10 +4887,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.675401419089035,
-    "lon": 138.56562430762187,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.647011,
+    "lon": 138.610809,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市向町２７９番地"
   },
   {
     "id": "7c63f4fb-56b5-5ca1-be23-111a3c8ba9fc",
@@ -4992,10 +4992,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.69649091325246,
-    "lon": 138.45284966811627,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "647f079c-5c09-575e-a651-b046f1324b1e",
@@ -5010,10 +5010,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.717258136873426,
-    "lon": 138.4407462119478,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "d50aa366-63ab-530b-90b0-837252931e3e",
@@ -5027,10 +5027,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.70851792172122,
-    "lon": 138.42930652323184,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "7c677d4e-c39d-52aa-83e6-09b8a5cf6298",
@@ -5044,10 +5044,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.711520897230486,
-    "lon": 138.4436223849851,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.757671,
+    "lon": 138.416885,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穴山町"
   },
   {
     "id": "c3200df8-76dd-5edd-b9d1-4d19344db25a",
@@ -5095,10 +5095,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.703545159075304,
-    "lon": 138.43721954680706,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.683537,
+    "lon": 138.445221,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條中割６８４番地"
   },
   {
     "id": "3eddb3bb-08b2-5cd2-984d-a29c65885424",
@@ -5129,10 +5129,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71575756466011,
-    "lon": 138.42773362325474,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.731186,
+    "lon": 138.469223,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市穂坂町宮久保"
   },
   {
     "id": "e88abe28-e24a-5bc1-9c1e-a139fd6c728b",
@@ -5163,10 +5163,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.69429132524605,
-    "lon": 138.42781647974365,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.684631,
+    "lon": 138.461838,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市龍岡町下條東割１２２９番地"
   },
   {
     "id": "c5eee9d3-5b23-5e65-9625-c1ab5e44fb4c",
@@ -5180,10 +5180,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62956779583429,
-    "lon": 138.48224664682994,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658997,
+    "lon": 138.440704,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野"
   },
   {
     "id": "d5ba9ddb-b131-5f70-a139-89c5aa753e67",
@@ -5197,10 +5197,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62660739299611,
-    "lon": 138.48341258869308,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.63578,
+    "lon": 138.464996,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市飯野３５７４番地"
   },
   {
     "id": "27d5deb9-6adb-54c8-9927-6f8d9cec4f2d",
@@ -5214,10 +5214,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.627358136873426,
-    "lon": 138.4621770656901,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.589615,
+    "lon": 138.469894,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市古市場２４０番地"
   },
   {
     "id": "e0c18336-fd5f-501f-a288-32ddcd5ef6a3",
@@ -5231,10 +5231,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.624321286335544,
-    "lon": 138.45693192950333,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.662922,
+    "lon": 138.439087,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２９９番地"
   },
   {
     "id": "cbfeef54-d060-5878-9412-006662d7c079",
@@ -5248,10 +5248,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62303952849622,
-    "lon": 138.46343547722591,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.662197,
+    "lon": 138.453125,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市六科１０９３番地"
   },
   {
     "id": "10ba2687-8d47-51d4-b4c9-0aa3b08f1873",
@@ -5265,10 +5265,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.60879828336004,
-    "lon": 138.45846683451592,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.660938,
+    "lon": 138.454193,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市百々１６６８番地"
   },
   {
     "id": "66aa9267-2f74-513c-90e6-1fe4f579616a",
@@ -5282,10 +5282,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62192439917602,
-    "lon": 138.46895848020142,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.611622,
+    "lon": 138.496368,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市鏡中條９６９番地"
   },
   {
     "id": "14520841-3884-53e6-875d-ee7469c412a2",
@@ -5299,10 +5299,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62954399176013,
-    "lon": 138.47388317692835,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.660805,
+    "lon": 138.449051,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３７１９番地"
   },
   {
     "id": "8e31cf9f-f443-5ab1-b108-7d1778961549",
@@ -5316,10 +5316,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.629922568093384,
-    "lon": 138.4608408331426,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.604149,
+    "lon": 138.464783,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市下宮地５２３番地"
   },
   {
     "id": "822a2159-88cc-5486-b6a0-ca89246d695c",
@@ -5333,10 +5333,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.612190363927674,
-    "lon": 138.46239542229344,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.659664,
+    "lon": 138.439926,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野３２４３番地"
   },
   {
     "id": "9103b914-e252-5ff2-ba8f-d2b3aea71ae4",
@@ -5351,10 +5351,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.60884818036164,
-    "lon": 138.4709685511559,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658997,
+    "lon": 138.440704,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市有野"
   },
   {
     "id": "61c61763-b811-533b-a2cc-8c1321a42af5",
@@ -5368,10 +5368,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62593721675441,
-    "lon": 138.4781463950561,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.632034,
+    "lon": 138.494125,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市下今諏訪３５１番地"
   },
   {
     "id": "66974972-0869-5218-95da-acf5e01eb61b",
@@ -5385,10 +5385,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.63218303959716,
-    "lon": 138.46595092698558,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.62347,
+    "lon": 138.455185,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市桃園９１７番地"
   },
   {
     "id": "77963986-f021-5e29-a7f6-51cfda5ae503",
@@ -5402,10 +5402,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79233401235981,
-    "lon": 138.40468583199817,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.847984,
+    "lon": 138.413345,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市高根町村山北割"
   },
   {
     "id": "ed58d034-471d-5696-862d-7a2a866a4a92",
@@ -5419,10 +5419,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.79587944609751,
-    "lon": 138.41762792401005,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.884762,
+    "lon": 138.350693,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町小荒間"
   },
   {
     "id": "9232b058-a6df-5fe1-9d43-2931d44d1ab8",
@@ -5436,10 +5436,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.795120462348365,
-    "lon": 138.41175335317004,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.858891,
+    "lon": 138.352066,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町大井ヶ森"
   },
   {
     "id": "460100e2-3034-53ca-874f-5fbdbb714e3f",
@@ -5453,10 +5453,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.81058990615702,
-    "lon": 138.40519487296862,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "626724b6-b344-5c6d-957d-b43e3c65d193",
@@ -5470,10 +5470,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.78438711375601,
-    "lon": 138.39663913939114,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.856319,
+    "lon": 138.558914,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市須玉町比志"
   },
   {
     "id": "c163064b-fc6b-548b-b31c-aa9cf1976538",
@@ -5487,10 +5487,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.782871892881666,
-    "lon": 138.4071083543145,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.847984,
+    "lon": 138.413345,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市高根町村山北割"
   },
   {
     "id": "598967b7-5af5-5779-8f07-787acf216fa6",
@@ -5504,10 +5504,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.807423048752575,
-    "lon": 138.42155925841152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "5eb0f697-7659-54e7-aebd-0057921d125c",
@@ -5521,10 +5521,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.807423048752575,
-    "lon": 138.42155925841152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "19d77dad-91a1-5a55-9713-9e27c8858b70",
@@ -5538,10 +5538,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.6649733806363,
-    "lon": 138.54318221560996,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.686993,
+    "lon": 138.515152,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市天狗沢６４１番地"
   },
   {
     "id": "6155308e-5c04-5835-8625-6ab85b07ffb1",
@@ -5555,10 +5555,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68199054703593,
-    "lon": 138.5284566491188,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.674946,
+    "lon": 138.534882,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市長塚１８４番地"
   },
   {
     "id": "19a4d61b-1aa3-5dfd-ac41-1a8d2ab90d16",
@@ -5572,10 +5572,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.68739681849393,
-    "lon": 138.51590045777064,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.706955,
+    "lon": 138.519424,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市牛句"
   },
   {
     "id": "9ff70edd-2829-5188-8cb8-40acf0c38101",
@@ -5589,10 +5589,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.67113543144884,
-    "lon": 138.53459306477455,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.682625,
+    "lon": 138.498367,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市下今井１７３０番地"
   },
   {
     "id": "ab986b44-88d6-536b-81e1-fe4e0f3f320e",
@@ -5606,10 +5606,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.688132455939574,
-    "lon": 138.52878990615702,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.674133,
+    "lon": 138.510681,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市竜王新町２０５７番地"
   },
   {
     "id": "62307baa-c30c-5146-a532-4ee178561d4c",
@@ -5623,10 +5623,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.62701952391852,
-    "lon": 138.54164623483635,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.650986,
+    "lon": 138.544647,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県昭和町清水新居１番地"
   },
   {
     "id": "a8b284ca-34b3-57fb-84f8-6c4174a89c96",
@@ -5640,10 +5640,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.68644433508812,
-    "lon": 138.68965181963836,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.690022,
+    "lon": 138.683685,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市上神内川１３２１番地"
   },
   {
     "id": "047c4035-d914-566c-97af-8395ac841a57",
@@ -5657,10 +5657,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.632469283588925,
-    "lon": 138.69294309910734,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.658588,
+    "lon": 138.64093,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町山崎１０２番地"
   },
   {
     "id": "f1a265cf-7232-54eb-91b7-417e738569ba",
@@ -5674,10 +5674,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.64406003662165,
-    "lon": 138.6677103227283,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.639336,
+    "lon": 138.635086,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町四日市場"
   },
   {
     "id": "aa5c5e9c-de54-5d98-8688-d0a9f0a6e4fd",
@@ -5691,10 +5691,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.65029349965667,
-    "lon": 138.6851815976196,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.655376,
+    "lon": 138.649109,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町川中島３９７番地"
   },
   {
     "id": "49faeedb-3fc8-5bd3-91e1-5b56b025646c",
@@ -5708,10 +5708,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.63766818493934,
-    "lon": 138.67082682536048,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.654976,
+    "lon": 138.642395,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町八田４９０番地"
   },
   {
     "id": "ccadb8dd-7cfb-5247-b055-f899a961def5",
@@ -5725,10 +5725,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.713559121080344,
-    "lon": 138.7329934996567,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.734722,
+    "lon": 138.719986,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山藤木"
   },
   {
     "id": "1c66ee14-8c6c-5173-b47f-17a07e5bf248",
@@ -5742,10 +5742,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.68917676813916,
-    "lon": 138.69558498512245,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.662937,
+    "lon": 138.690262,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市下栗原１０４９番地"
   },
   {
     "id": "3fc66a95-2da9-5efa-bb93-ad1b364fefd5",
@@ -5759,10 +5759,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.69946562142366,
-    "lon": 138.6927591668574,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.702507,
+    "lon": 138.698242,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市七日市場７７３番地"
   },
   {
     "id": "43924074-3595-5008-9d83-be03d9cb20e4",
@@ -5776,10 +5776,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.71267333485924,
-    "lon": 138.7390356145571,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.682884,
+    "lon": 138.724838,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市勝沼町山"
   },
   {
     "id": "25f02bd3-8563-5efe-909b-bdfc820539fc",
@@ -5793,10 +5793,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.71422151522088,
-    "lon": 138.7402509956512,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.727573,
+    "lon": 138.76207,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山中萩原１３０９番地"
   },
   {
     "id": "6088f1dd-4220-5358-9ed0-8167610aaba3",
@@ -5810,10 +5810,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.708227924010075,
-    "lon": 138.7409294117647,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.705826,
+    "lon": 138.723587,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲州市塩山上於曽５９４番地"
   },
   {
     "id": "8f48b3ee-a9c9-5d38-8e85-786b2d889eae",
@@ -5827,10 +5827,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.371736942092014,
-    "lon": 138.46145648889905,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.378922,
+    "lon": 138.408005,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県身延町身延３６３７番地"
   },
   {
     "id": "5710f985-2ef4-5ac8-9726-46a538ca259d",
@@ -5844,10 +5844,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.5261466239414,
-    "lon": 138.49180428015563,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.572632,
+    "lon": 138.465561,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町長澤５８２番地"
   },
   {
     "id": "647cda99-42f8-57b7-8ba7-30523eefd8f4",
@@ -5862,10 +5862,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.52471929503319,
-    "lon": 138.49492673380635,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.538898,
+    "lon": 138.463058,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士川町駅前通二丁目"
   },
   {
     "id": "7c939294-ff11-5f49-a24b-4e85c57c8fed",
@@ -5896,10 +5896,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.47624994277867,
-    "lon": 138.79736958113986,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.508064,
+    "lon": 138.827469,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士吉田市上暮地"
   },
   {
     "id": "8f31be99-5594-57a9-aa57-cb4aa173e808",
@@ -5964,10 +5964,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.55326159304189,
-    "lon": 138.92156688029297,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.570904,
+    "lon": 138.922623,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市古川渡３２８番地"
   },
   {
     "id": "3737d6f3-f39d-5ab3-88dd-eed8eb9e5ba2",
@@ -5981,10 +5981,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.55499196612497,
-    "lon": 138.90137049668115,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.568375,
+    "lon": 138.919189,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県都留市四日市場"
   },
   {
     "id": "4eadfe99-3746-509b-8ddc-15f4760ce61f",
@@ -5998,10 +5998,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.61434030670634,
-    "lon": 138.92695802243074,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.616161,
+    "lon": 138.91925,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市賑岡町浅利１１０８番地"
   },
   {
     "id": "aee12c56-fc2b-5241-bb46-b9e5227edfec",
@@ -6015,10 +6015,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.626204921034564,
-    "lon": 139.00657148088808,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.629478,
+    "lon": 139.11763,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県上野原市上野原１５００番地"
   },
   {
     "id": "dc983813-b9e9-5021-840f-b2c5be1de957",
@@ -6032,10 +6032,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.49128594644083,
-    "lon": 138.77278601510645,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.491215,
+    "lon": 138.771362,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町船津５２０４番地"
   },
   {
     "id": "ecbca900-a5f8-5ccc-9ec6-db5b60468597",
@@ -6049,10 +6049,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.664223117418175,
-    "lon": 138.55464330510415,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.709244,
+    "lon": 138.597443,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上積翠寺町１００３番地"
   },
   {
     "id": "ab4c63f8-83bc-5144-908e-c35d560cd341",
@@ -6066,10 +6066,10 @@
     ],
     "region": "中北",
     "is_kofu": true,
-    "lat": 35.670713389791715,
-    "lon": 138.56108734264134,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.636425,
+    "lon": 138.587189,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲府市上町２４７３番地"
   },
   {
     "id": "83fa798c-3f56-5197-9e13-a86c8e760c10",
@@ -6083,10 +6083,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.71654538796063,
-    "lon": 138.4417299610895,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.668137,
+    "lon": 138.444092,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県韮崎市旭町上條南割３２５１番地"
   },
   {
     "id": "b8532b69-32d8-50b9-9b02-fbd4eca3eaa7",
@@ -6100,10 +6100,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.661858709086744,
-    "lon": 138.52071162737468,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.706955,
+    "lon": 138.519424,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県甲斐市牛句"
   },
   {
     "id": "cdc398d1-ecfd-5136-8f13-1a00a7c268f9",
@@ -6117,10 +6117,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.78932600137331,
-    "lon": 138.42508546578162,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.884762,
+    "lon": 138.350693,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市長坂町小荒間"
   },
   {
     "id": "688c90ed-2297-5a5f-bfd1-ca5e6491c7bd",
@@ -6134,10 +6134,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.807423048752575,
-    "lon": 138.42155925841152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "469ea78b-f7ba-55ca-88de-f347e4389be5",
@@ -6151,10 +6151,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.807423048752575,
-    "lon": 138.42155925841152,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.766827,
+    "lon": 138.448013,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県北杜市明野町上手"
   },
   {
     "id": "5e90db5e-871c-50d8-8279-cbdfa207f3db",
@@ -6168,10 +6168,10 @@
     ],
     "region": "中北",
     "is_kofu": false,
-    "lat": 35.628059899290456,
-    "lon": 138.45895481803618,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.640781,
+    "lon": 138.4599,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県南アルプス市飯野２９３９番地"
   },
   {
     "id": "105849cc-3977-555c-aab7-fd57cac5110a",
@@ -6185,10 +6185,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.70076706340123,
-    "lon": 138.68713774319065,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.69331,
+    "lon": 138.711273,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市東後屋敷５６６番地"
   },
   {
     "id": "2d6abbb6-cd7c-5f84-8bce-9a752aaf914c",
@@ -6202,10 +6202,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.68605294117647,
-    "lon": 138.6731903868162,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.695812,
+    "lon": 138.694809,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県山梨市小原西６４１番地"
   },
   {
     "id": "a974dab4-cf45-54c8-ae0b-b19c416f1d59",
@@ -6219,10 +6219,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.630933920805674,
-    "lon": 138.6762042572671,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.639336,
+    "lon": 138.635086,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市石和町四日市場"
   },
   {
     "id": "b3b78159-b205-5aa4-a8df-bdb1fcea2d16",
@@ -6236,10 +6236,10 @@
     ],
     "region": "峡東",
     "is_kofu": false,
-    "lat": 35.6521328221561,
-    "lon": 138.6756846875715,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.618492,
+    "lon": 138.65564,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県笛吹市八代町北１７５番地"
   },
   {
     "id": "d3a432c6-178b-5237-b767-1179950ecaac",
@@ -6253,10 +6253,10 @@
     ],
     "region": "峡南",
     "is_kofu": false,
-    "lat": 35.567882032501714,
-    "lon": 138.55459748226139,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.53178,
+    "lon": 138.466721,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県市川三郷町黒沢"
   },
   {
     "id": "a9a08f2e-acbe-5e5f-8343-681747715c5e",
@@ -6287,10 +6287,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.47624994277867,
-    "lon": 138.79736958113986,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.508064,
+    "lon": 138.827469,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士吉田市上暮地"
   },
   {
     "id": "f2067ac6-dd2f-531d-8cf3-22f28be7d433",
@@ -6321,10 +6321,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.59965685511558,
-    "lon": 138.9464485236896,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.616161,
+    "lon": 138.91925,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県大月市賑岡町浅利１１０８番地"
   },
   {
     "id": "08a60456-5501-5164-9ce6-65d80f8194a9",
@@ -6338,10 +6338,10 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.45917116044862,
-    "lon": 138.84445312428474,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.458946,
+    "lon": 138.815231,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県忍野村忍草２７４８番地"
   },
   {
     "id": "04820fb7-25d7-5cc7-9c81-9e4ef401dfcd",
@@ -6355,9 +6355,9 @@
     ],
     "region": "富士・東部",
     "is_kofu": false,
-    "lat": 35.50869633783474,
-    "lon": 138.7713664682994,
-    "geo_source": "approx",
-    "geo_label": ""
+    "lat": 35.485401,
+    "lon": 138.76709,
+    "geo_source": "gsi_search",
+    "geo_label": "地理院地図住所検索: 山梨県富士河口湖町船津６６６３番地"
   }
 ]
