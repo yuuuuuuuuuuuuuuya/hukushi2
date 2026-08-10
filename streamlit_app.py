@@ -998,6 +998,81 @@ def match_gsi_fixed_coordinate(rec):
     rec["geo_label"] = f"国土地理院 住居表示住所: {town_candidates[0]} {block}街区"
     return True, rec["geo_label"]
 
+
+
+# 地理院地図「地名検索」補完用（住居表示住所データで固定できなかった住所向け）
+GSI_ADDRESS_SEARCH_URL = "https://msearch.gsi.go.jp/address-search/AddressSearch"
+
+def _gsi_search_queries(address: str):
+    a = _normalize_digits(address or "").strip()
+    if not a:
+        return []
+    if "山梨県" not in a:
+        a = "山梨県" + a
+    # まず番地まで含めて検索し、次に末尾の枝番を1段階ずつ緩める
+    qs = [a]
+    relaxed = re.sub(r"[-－](\d+)$", "", a)
+    if relaxed and relaxed not in qs:
+        qs.append(relaxed)
+    relaxed2 = re.sub(r"(\d+)[-－](\d+)$", r"\1", relaxed)
+    if relaxed2 and relaxed2 not in qs:
+        qs.append(relaxed2)
+    return qs[:3]
+
+def geocode_gsi_maps_address_diagnostic(address: str):
+    """地理院地図の地名検索で住所を補完。成功時は候補位置と検索ラベルを返す。"""
+    queries = _gsi_search_queries(address)
+    if not queries:
+        return None, "住所が空です"
+    last_reason = "候補が見つかりませんでした"
+    for query in queries:
+        try:
+            r = requests.get(
+                GSI_ADDRESS_SEARCH_URL,
+                params={"q": query},
+                headers={"User-Agent": "yamanashi-welfare-facility-search/3.0"},
+                timeout=20,
+            )
+            r.raise_for_status()
+            data = r.json()
+            features = data if isinstance(data, list) else data.get("features", []) if isinstance(data, dict) else []
+            if not features:
+                last_reason = f"候補0件: {query}"
+                continue
+            for feat in features:
+                try:
+                    geom = feat.get("geometry", {}) if isinstance(feat, dict) else {}
+                    coords = geom.get("coordinates", [])
+                    lon, lat = float(coords[0]), float(coords[1])
+                except Exception:
+                    continue
+                if not (35.10 <= lat <= 36.05 and 138.10 <= lon <= 139.20):
+                    continue
+                props = feat.get("properties", {}) if isinstance(feat, dict) else {}
+                title = props.get("title") or props.get("addressCode") or query
+                return {"lat": lat, "lon": lon, "display_name": str(title), "query": query}, "成功"
+            last_reason = "候補はありましたが山梨県内の座標を取得できませんでした"
+        except requests.HTTPError as e:
+            last_reason = f"HTTPエラー: {getattr(e.response, 'status_code', '不明')}"
+        except requests.Timeout:
+            last_reason = "通信タイムアウト"
+        except requests.RequestException as e:
+            last_reason = f"通信エラー: {type(e).__name__}"
+        except Exception as e:
+            last_reason = f"応答解析エラー: {type(e).__name__}"
+    return None, last_reason
+
+def match_gsi_search_coordinate(rec):
+    result, reason = geocode_gsi_maps_address_diagnostic(rec.get("address", ""))
+    if not result:
+        return False, reason
+    rec["lat"] = result["lat"]
+    rec["lon"] = result["lon"]
+    rec["geo_source"] = "gsi_search"
+    rec["geo_label"] = f"地理院地図住所検索: {result.get('display_name', '')}"
+    return True, rec["geo_label"]
+
+
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
     p1, p2 = math.radians(lat1), math.radians(lat2)
@@ -1236,7 +1311,7 @@ if mode == "🔎 利用者向け検索ページ":
                 f"{row['address']}<br>"
                 f"TEL: {row['phone']}<br>"
                 f"サービス: {'、'.join(row['services'])}<br>"
-                f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed'} else '概算位置'}"
+                f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search'} else '概算位置'}"
             )
             if row["is_kofu"]:
                 popup_html += "<br><b style='color:#b3221e;'>※甲府市役所障がい福祉課へ確認</b>"
@@ -1348,7 +1423,7 @@ if mode == "🔎 利用者向け検索ページ":
             )
             dist_df = dist_df.sort_values("distance_km")
 
-            approx_count = int((dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)) != "geocoded").sum())
+            approx_count = int((~dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)).isin(["geocoded", "gsi_fixed", "gsi_search"])).sum())
             if approx_count:
                 st.info(
                     f"表示対象のうち {approx_count}件は位置情報が未確認のため、距離は概算です。"
@@ -1373,7 +1448,7 @@ if mode == "🔎 利用者向け検索ページ":
                 st.markdown(
                     f"""<div class="fac-card">
                     <h3>{row['name']}（約{row['distance_km']}km）</h3>
-                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed'} else '概算位置'}</p>
+                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search'} else '概算位置'}</p>
                     {badges}
                     <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
                     <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
@@ -1422,7 +1497,7 @@ else:
     )
 
     st.subheader("📍 事業所の位置情報を正確にする")
-    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") in {"geocoded", "gsi_fixed"})
+    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") in {"geocoded", "gsi_fixed", "gsi_search"})
     total_count = len(st.session_state.facilities)
     st.progress(exact_count / total_count if total_count else 0.0)
     st.caption(f"正確な位置を固定済み：{exact_count} / {total_count}件")
@@ -1430,10 +1505,10 @@ else:
         "国土地理院の『住居表示住所』データを一度読み込み、該当する事業所の座標を固定保存します。"
         "公開ジオコーディングAPIへの個別問い合わせは行いません。"
     )
-    st.info("対応市：甲府市・富士吉田市・都留市・大月市・韮崎市・上野原市。住居表示未実施地区は概算位置のまま残ります。")
+    st.info("①まず住居表示住所データで高精度固定 → ②残りを地理院地図の住所検索で補完、の順に実行してください。")
 
     if st.button("🗺️ 国土地理院データで位置を一括固定する", type="primary"):
-        targets = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed"}]
+        targets = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search"}]
         if not targets:
             st.success("固定化できる事業所はすべて処理済みです。")
         else:
@@ -1469,6 +1544,45 @@ else:
                 mime="application/json",
             )
             st.caption("このJSONを streamlit_app.py と同じフォルダに置けば、再デプロイ後も固定座標をそのまま利用できます。")
+
+    st.markdown("#### ② 残りを地理院地図の住所検索で補完")
+    st.caption(
+        "住居表示住所データで固定できなかった事業所だけを対象にします。"
+        "住所によっては番地そのものではなく、街区・町丁目などの代表地点になる場合があります。"
+    )
+    if st.button("🔎 残りの事業所を住所検索で補完する"):
+        targets2 = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search"}]
+        if not targets2:
+            st.success("住所検索で補完する事業所はありません。")
+        else:
+            progress2 = st.progress(0.0)
+            ok2 = 0
+            rows2 = []
+            for idx, rec in enumerate(targets2, start=1):
+                success, reason = match_gsi_search_coordinate(rec)
+                if success:
+                    ok2 += 1
+                rows2.append({
+                    "事業所名": rec.get("name", ""),
+                    "住所": rec.get("address", ""),
+                    "結果": "住所検索済み" if success else "概算のまま",
+                    "詳細": reason,
+                })
+                progress2.progress(idx / len(targets2))
+            save_ok2 = save_facilities(st.session_state.facilities)
+            remaining2 = len(targets2) - ok2
+            st.success(f"補完完了：{ok2}件の位置を追加しました。残り {remaining2}件は概算位置です。")
+            if not save_ok2:
+                st.warning("座標ファイルの保存に失敗しました。")
+            st.dataframe(pd.DataFrame(rows2), use_container_width=True, hide_index=True)
+            st.download_button(
+                "⬇️ 補完後の facilities_data.json を保存",
+                data=json.dumps(st.session_state.facilities, ensure_ascii=False, indent=2),
+                file_name="facilities_data.json",
+                mime="application/json",
+                key="download_after_gsi_search",
+            )
+            st.caption("ダウンロードしたJSONでGitHub上の facilities_data.json を上書きしてください。")
 
     st.divider()
 
