@@ -4,7 +4,7 @@
 単一ファイル（streamlit_app.py）+ requirements.txt のみで動作する構成。
 
 データ出典: 山梨県福祉保健部障害福祉課
-  「障害者福祉サービスのご案内（令和7年度版）」施設一覧（令和7年6月1日現在）
+  「障害者福祉サービスのご案内（令和7年度版）」施設一覧（令和8年6月1日現在）
   および「山梨県福祉サービス事業所一覧」（中北・峡東・峡南・富士東部圏域）
 
 【重要な注意】
@@ -126,6 +126,7 @@ SERVICE_LIST = [
     "就労継続支援A型",
     "就労継続支援B型",
     "就労定着支援",
+    "就労選択支援",
     "生活介護",
     "自立訓練(機能訓練)",
     "自立訓練(生活訓練)",
@@ -136,8 +137,8 @@ SERVICE_LIST = [
 ]
 
 CATEGORY_MAP = {
-    "働きたい（就労移行・A型・B型・定着支援）": {
-        "就労移行支援", "就労継続支援A型", "就労継続支援B型", "就労定着支援"
+    "働きたい（就労移行・A型・B型・定着・選択支援）": {
+        "就労移行支援", "就労継続支援A型", "就労継続支援B型", "就労定着支援", "就労選択支援"
     },
     "日中を過ごしたい（生活介護）": {"生活介護"},
     "力をつけたい（自立訓練）": {"自立訓練(機能訓練)", "自立訓練(生活訓練)"},
@@ -152,6 +153,7 @@ SERVICE_BADGE_CLASS = {
     "就労継続支援A型": "badge-work",
     "就労継続支援B型": "badge-work",
     "就労定着支援": "badge-work",
+    "就労選択支援": "badge-work",
     "生活介護": "badge-day",
     "自立訓練(機能訓練)": "badge-train",
     "自立訓練(生活訓練)": "badge-train",
@@ -164,6 +166,7 @@ SERVICE_BADGE_CLASS = {
 SERVICE_MAP_COLOR = {
     "就労移行支援": "blue", "就労継続支援A型": "blue", "就労継続支援B型": "blue",
     "就労定着支援": "blue",
+    "就労選択支援": "blue",
     "生活介護": "green",
     "自立訓練(機能訓練)": "orange", "自立訓練(生活訓練)": "orange",
     "共同生活援助": "purple",
@@ -1270,6 +1273,161 @@ def build_default_facilities():
 
 
 
+
+# =============================================================================
+# 2026年最新データ補完
+# 山梨県「県内障害者支援施設・障害福祉サービス事業所一覧」
+# 「共同生活援助事業所（グループホーム）一覧」
+# 令和8年6月1日現在に基づく。
+#
+# facilities_data.json が既に存在していても、ここにある新設事業所は
+# 起動時に自動追加される。既存事業所のサービス追加も自動マージする。
+# =============================================================================
+LATEST_2026_RECORDS = [
+    # ---- 生活介護：R7.6.1以降の新設 ----
+    {"name":"ポタジェ","address":"甲府市大里町4060-1","phone":"055-225-6191","capacity":20,"org":"（NPO）COCOKARA","service":"生活介護"},
+    {"name":"山の手倶楽部LAB","address":"甲府市朝気1-2-63","phone":"055-288-8822","capacity":20,"org":"マクロ（株）","service":"生活介護"},
+    {"name":"guffa","address":"甲斐市長塚166-2 中込ビル2階","phone":"090-8042-1940","capacity":20,"org":"（同）toitoitoi","service":"生活介護"},
+
+    # ---- 就労選択支援（2025年10月開始の新サービス） ----
+    {"name":"すみよし作業センター","address":"甲府市住吉4-10-32","phone":"055-221-2110","capacity":10,"org":"（公財）住吉偕成会","service":"就労選択支援"},
+    {"name":"コリード甲府","address":"甲府市国母7-5-17 サンライン甲府ビル5階F号室","phone":"055-288-0370","capacity":10,"org":"（株）片桐建設","service":"就労選択支援"},
+    {"name":"障害福祉サービス事業所POCCOワークス","address":"甲斐市龍地3579-4","phone":"0551-45-7800","capacity":10,"org":"（株）Happinessあさひ会","service":"就労選択支援"},
+    {"name":"甲斐志麻の里ファーム","address":"甲斐市島上条1277-1","phone":"055-288-1241","capacity":10,"org":"（特非）甲斐志麻の里ファーム","service":"就労選択支援"},
+    {"name":"就労選択支援事業所 アルプスの杜","address":"中央市西花輪2717-1","phone":"055-273-0294","capacity":10,"org":"（株）アルプスの杜","service":"就労選択支援"},
+    {"name":"SAKURA山梨センター","address":"甲府市徳行2-5-13","phone":"055-221-3918","capacity":15,"org":"（株）綜合キャリアトラスト","service":"就労選択支援"},
+    {"name":"就労選択支援事業所かしのみ","address":"甲府市宝1-23-13","phone":"055-270-0005","capacity":10,"org":"（福）かしのみ福祉会","service":"就労選択支援"},
+    {"name":"たいよう","address":"南アルプス市和泉984-1","phone":"055-244-8820","capacity":10,"org":"（特非）ジット会","service":"就労選択支援"},
+    {"name":"みらいコンパニー","address":"南アルプス市上宮地1143","phone":"055-283-7733","capacity":10,"org":"（福）さかき会","service":"就労選択支援"},
+    {"name":"KEIPE甲府オフィス","address":"甲府市丸の内1-15-2 第5丸銀ビル2階","phone":"055-225-3262","capacity":10,"org":"KEIPE株式会社","service":"就労選択支援"},
+
+    # ---- 就労移行支援 ----
+    {"name":"障がい福祉サービスセンターあすなろ工房","address":"甲府市上石田4-5-18","phone":"055-222-0505","capacity":6,"org":"（福）やまなし勤労者福祉会","service":"就労移行支援"},
+    {"name":"ディーキャリア 甲府オフィス","address":"甲府市北口3-4-33 セインツ25 201号室","phone":"055-288-8560","capacity":20,"org":"ヒューコムエンジニアリング（株）","service":"就労移行支援"},
+    {"name":"はたらく森","address":"甲府市丸の内2-29-6 和光電機ビル4階","phone":"055-267-5925","capacity":10,"org":"（株）fennec","service":"就労移行支援"},
+
+    # ---- 就労継続支援A型 ----
+    {"name":"山梨都留再生工場","address":"都留市つる2-2-3","phone":"080-3787-4877","capacity":20,"org":"（株）yuni","service":"就労継続支援A型"},
+    {"name":"はたらく森","address":"甲府市丸の内2-29-6 和光電機ビル4階","phone":"055-267-5925","capacity":10,"org":"（株）fennec","service":"就労継続支援A型"},
+    {"name":"GREEN Lab就労継続支援A型B型事業所","address":"中巨摩郡昭和町西条3971-1 YKビル2F","phone":"055-288-0601","capacity":10,"org":"（株）G-BASE","service":"就労継続支援A型"},
+
+    # ---- 就労継続支援B型 ----
+    {"name":"ワークパス","address":"甲府市和田町3003-81","phone":"055-253-2228","capacity":20,"org":"（公財）リヴィーズ","service":"就労継続支援B型"},
+    {"name":"就労B.5Weare銀の糸","address":"甲府市下小河原町32-4","phone":"055-287-8460","capacity":20,"org":"（株）スレッド","service":"就労継続支援B型"},
+    {"name":"キャリカク甲府駅前","address":"甲府市丸の内2-16-7 第4丸銀ビル3階","phone":"055-244-7791","capacity":20,"org":"（株）リバーノ","service":"就労継続支援B型"},
+    {"name":"ポタジェ","address":"甲府市大里町4060-1","phone":"055-225-6191","capacity":14,"org":"（NPO）COCOKARA","service":"就労継続支援B型"},
+    {"name":"障がい福祉サービスセンターあすなろ工房","address":"甲府市上石田4-5-18","phone":"055-222-0505","capacity":14,"org":"（福）やまなし勤労者福祉会","service":"就労継続支援B型"},
+    {"name":"プラネット甲府","address":"甲府市大里町4060-1","phone":"055-225-6191","capacity":14,"org":"（株）プラネット","service":"就労継続支援B型"},
+    {"name":"山梨ITトレーニングセンター","address":"北杜市須玉町藤田267-1","phone":"050-1782-1756","capacity":20,"org":"（株）B for","service":"就労継続支援B型"},
+    {"name":"ひとつぶ","address":"甲府市湯村2-6-33","phone":"080-3756-5640","capacity":20,"org":"（同）かたすみ","service":"就労継続支援B型"},
+    {"name":"ジョブタス甲府昭和事業所","address":"中巨摩郡昭和町飯喰1353-1","phone":"055-267-5092","capacity":20,"org":"（株）ジョブタスe","service":"就労継続支援B型"},
+    {"name":"GREEN Lab就労継続支援A型B型事業所","address":"中巨摩郡昭和町西条3971-1 YKビル2F","phone":"055-288-0601","capacity":10,"org":"（株）G-BASE","service":"就労継続支援B型"},
+    {"name":"就労支援B型事業所 チワワ","address":"甲府市羽黒町1466-2","phone":"080-4461-5764","capacity":20,"org":"（株）ICHIE ASU","service":"就労継続支援B型"},
+    {"name":"さくらワークス","address":"甲府市北口3-8-16","phone":"055-269-7100","capacity":20,"org":"（福）燦生福祉会","service":"就労継続支援B型"},
+    {"name":"就労継続支援B型 ひので工房","address":"笛吹市石和町四日市場877-1","phone":"070-2610-1010","capacity":20,"org":"（同）でいじぃー","service":"就労継続支援B型"},
+    {"name":"リジョイス石和","address":"笛吹市石和町駅前14-7 コアシマダビル1F","phone":"055-215-6143","capacity":20,"org":"（株）GATE","service":"就労継続支援B型"},
+    {"name":"就労継続支援B型事業所はぐみぃ","address":"笛吹市石和町市部520-5 コネクションBOX101","phone":"055-267-6284","capacity":20,"org":"（株）らくてぃ","service":"就労継続支援B型"},
+    {"name":"workstyle yamanashi++","address":"山梨市上神内川1053-1","phone":"0553-39-9424","capacity":20,"org":"（株）スマイルサポート","service":"就労継続支援B型"},
+    {"name":"AI就労支援センターシルム上野原","address":"上野原市上野原3428","phone":"080-7260-7529","capacity":20,"org":"（株）XTHELA","service":"就労継続支援B型"},
+    {"name":"就労継続支援B型事業所 LiviT","address":"都留市田野倉574-2","phone":"0554-67-8338","capacity":20,"org":"（福）平成福祉会","service":"就労継続支援B型"},
+
+    # ---- 就労定着支援 ----
+    {"name":"山梨クリナース","address":"山梨市大野1551-1","phone":"0553-23-3382","capacity":0,"org":"（福）忠恕会","service":"就労定着支援"},
+
+    # ---- 短期入所 ----
+    {"name":"グループホーム マルチーズ","address":"南アルプス市古市場595","phone":"055-284-7012","capacity":3,"org":"（株）ICHIE ASU","service":"短期入所"},
+    {"name":"第二彦星","address":"甲府市国母5-3-35","phone":"090-2246-6723","capacity":1,"org":"（同）Grk","service":"短期入所"},
+    {"name":"介護老人保健施設 甲州ケア・ホーム","address":"笛吹市石和町四日市場2031","phone":"055-263-0242","capacity":2,"org":"（医）銀門会","service":"短期入所"},
+    {"name":"峡南病院","address":"南巨摩郡富士川町鰍沢1806","phone":"0556-22-4411","capacity":1,"org":"（医）峡南会","service":"短期入所"},
+
+    # ---- 共同生活援助：R7.6.1以降＋元データの取りこぼし ----
+    {"name":"みらいのたね山梨","address":"甲府市中小河原1-1-8","phone":"055-269-8188","capacity":4,"org":"（株）ケアラボ","service":"共同生活援助"},
+    {"name":"みらいのたね山梨Ⅱ","address":"甲府市大里町4019-6","phone":"055-269-8188","capacity":3,"org":"（株）ケアラボ","service":"共同生活援助"},
+    {"name":"障害者グループホーム with わん","address":"山梨市三ヶ所477-10","phone":"080-1037-6136","capacity":4,"org":"（株）ワンシグ","service":"共同生活援助"},
+    {"name":"障害者グループホーム 縁日","address":"南アルプス市小笠原820","phone":"080-5417-5971","capacity":7,"org":"（株）まもりて","service":"共同生活援助"},
+    {"name":"グループホーム マルチーズ","address":"南アルプス市古市場595","phone":"055-284-7012","capacity":17,"org":"（株）ICHIE ASU","service":"共同生活援助"},
+    {"name":"第二彦星","address":"甲府市国母5-3-35","phone":"055-288-1750","capacity":10,"org":"（同）Grk","service":"共同生活援助"},
+    {"name":"障がい者グループホーム さとの家","address":"南アルプス市藤田1511-2","phone":"070-8325-2849","capacity":5,"org":"（同）ケーユー管理","service":"共同生活援助"},
+
+    # ---- 以前のデータで通称が検索しづらかった事業所 ----
+    {"name":"マハロ（通称 スマイルファクトリー）","address":"南アルプス市西南湖32-1","phone":"055-234-5024","capacity":20,"org":"（福）青い樹の会","service":"就労継続支援B型"},
+]
+
+def _compact_text_for_match(value):
+    s = str(value or "")
+    trans = str.maketrans("０１２３４５６７８９－ー―−　", "0123456789---- ")
+    return s.translate(trans).replace(" ", "").replace("　", "").lower()
+
+def apply_2026_official_updates(data):
+    """既存JSONを残したまま、令和8年6月1日現在の公式差分を追加・マージする。"""
+    result = [dict(r) for r in data]
+
+    # 「マハロ」を県公式の通称入り表示に更新。
+    for rec in result:
+        if (rec.get("name") == "マハロ"
+                and _compact_text_for_match(rec.get("address")) == _compact_text_for_match("南アルプス市西南湖32-1")):
+            rec["name"] = "マハロ（通称 スマイルファクトリー）"
+
+    def find_existing(item):
+        name_n = _compact_text_for_match(item["name"])
+        addr_n = _compact_text_for_match(item["address"])
+
+        # 同住所＋同名を第一候補。
+        for rec in result:
+            rn = _compact_text_for_match(rec.get("name"))
+            ra = _compact_text_for_match(rec.get("address"))
+            if rn == name_n and ra == addr_n:
+                return rec
+            # 同名で、県一覧側だけビル名・階数等が追記されたケースも同一事業所として扱う。
+            if rn == name_n and ra and addr_n and (ra.startswith(addr_n) or addr_n.startswith(ra)):
+                return rec
+
+        # 同住所で名称が若干違う既存レコード（法人資料と県資料の表記差）を吸収。
+        for rec in result:
+            if _compact_text_for_match(rec.get("address")) != addr_n:
+                continue
+            rn = _compact_text_for_match(rec.get("name"))
+            if rn and name_n and (rn in name_n or name_n in rn):
+                return rec
+        return None
+
+    for item in LATEST_2026_RECORDS:
+        existing = find_existing(item)
+        if existing is not None:
+            services = list(existing.get("services", []))
+            if item["service"] not in services:
+                services.append(item["service"])
+            existing["services"] = services
+            if item.get("phone"):
+                existing["phone"] = item["phone"]
+            if item.get("org"):
+                existing["org"] = item["org"]
+            existing["capacity"] = max(int(existing.get("capacity", 0) or 0), int(item.get("capacity", 0) or 0))
+            continue
+
+        rec = {
+            "id": str(uuid.uuid5(uuid.NAMESPACE_DNS, item["name"] + "|" + item["address"])),
+            "name": item["name"],
+            "address": item["address"],
+            "phone": item.get("phone", ""),
+            "capacity": int(item.get("capacity", 0) or 0),
+            "org": item.get("org", ""),
+            "services": [item["service"]],
+            "region": get_region(item["address"]),
+            "is_kofu": "甲府市" in item["address"],
+            "lat": None,
+            "lon": None,
+            "geo_source": "approx",
+            "geo_label": "2026年公式一覧から追加（位置は住所補完対象）",
+        }
+        ll = approx_latlon(item["address"])
+        if ll:
+            rec["lat"], rec["lon"] = ll
+        result.append(rec)
+
+    return result
+
+
 # =============================================================================
 # Web・地図情報で個別確認した位置（代表地点への吸着を避けるため固定）
 # 住所は自治体・法人等の公開情報、座標はMapFan/NAVITIME/国土数値情報系等で照合。
@@ -1309,10 +1467,12 @@ def load_facilities():
     if os.path.exists(DATA_FILE):
         try:
             with open(DATA_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+                data = json.load(f)
+            return apply_verified_coordinate_overrides(apply_2026_official_updates(data))
         except Exception:
             pass
-    data = apply_verified_coordinate_overrides(build_default_facilities())
+    data = apply_2026_official_updates(build_default_facilities())
+    data = apply_verified_coordinate_overrides(data)
     save_facilities(data)
     return data
 
@@ -1346,7 +1506,7 @@ def normalize_loaded_facilities(data):
         rec.setdefault("region", get_region(rec.get("address", "")))
         rec.setdefault("is_kofu", "甲府市" in rec.get("address", ""))
         normalized.append(rec)
-    return apply_verified_coordinate_overrides(normalized)
+    return apply_verified_coordinate_overrides(apply_2026_official_updates(normalized))
 
 
 if "facilities" not in st.session_state:
@@ -1372,7 +1532,7 @@ mode = st.sidebar.radio(
 )
 
 st.title("山梨県 障害福祉サービス事業所検索アプリ")
-st.caption("成人の通所・入所・就労支援に特化した検索アプリです（令和7年6月1日時点の県公表資料をもとに作成）")
+st.caption("成人の通所・入所・就労支援に特化した検索アプリです（令和8年6月1日時点の県公表資料をもとに作成）")
 
 
 # =============================================================================
