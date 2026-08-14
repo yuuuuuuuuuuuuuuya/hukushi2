@@ -1269,6 +1269,42 @@ def build_default_facilities():
     return facilities
 
 
+
+# =============================================================================
+# Web・地図情報で個別確認した位置（代表地点への吸着を避けるため固定）
+# 住所は自治体・法人等の公開情報、座標はMapFan/NAVITIME/国土数値情報系等で照合。
+# =============================================================================
+VERIFIED_COORDINATE_OVERRIDES = {
+    ("ケアハウスランタン", "北杜市長坂町大井ケ森978-1"): (35.86930882, 138.35214448),
+    ("緑の風", "北杜市長坂町大井ヶ森994-1"): (35.8709939, 138.3513146),
+    ("ハッピーKAI", "甲斐市牛句118"): (35.69822311401367, 138.52255249023438),
+    ("敷島緑陽園", "甲斐市牛句2027-3"): (35.7000281, 138.5211222),
+    ("ワーキングスペース大地", "甲斐市牛句2029-2"): (35.6997585, 138.5208846),
+    ("春日の丘", "甲斐市牛句宮前2261"): (35.695032, 138.5206907),
+    ("ケアホーム宿尻", "韮崎市穴山町4379-2"): (35.753663, 138.4152806),
+    ("わ～く穴山の里", "韮崎市穴山町4433-1"): (35.754248, 138.416611),
+    ("にこあす", "韮崎市穴山町4462-2"): (35.7551972, 138.4164892),
+    ("第2あなやまハイツ", "韮崎市穴山町5187-3"): (35.7576833, 138.4132327),
+    ("あなやまハイツ", "韮崎市穴山町5187-4"): (35.757805, 138.4131427),
+    ("フレンズ", "韮崎市穴山町8708"): (35.7553869, 138.4075336),
+    ("穴山の里", "韮崎市穴山町次第窪5164"): (35.7584159, 138.4136365),
+}
+
+def apply_verified_coordinate_overrides(data):
+    corrected = []
+    for item in data:
+        rec = dict(item)
+        key = (str(rec.get("name", "")).strip(), str(rec.get("address", "")).strip())
+        coords = VERIFIED_COORDINATE_OVERRIDES.get(key)
+        if coords:
+            rec["lat"], rec["lon"] = coords
+            rec["geo_source"] = "verified_web"
+            rec["geo_label"] = "公開情報・地図情報で個別照合済み"
+            rec["region"] = get_region(rec.get("address", ""))
+            rec["is_kofu"] = "甲府市" in rec.get("address", "")
+        corrected.append(rec)
+    return corrected
+
 def load_facilities():
     if os.path.exists(DATA_FILE):
         try:
@@ -1276,7 +1312,7 @@ def load_facilities():
                 return json.load(f)
         except Exception:
             pass
-    data = build_default_facilities()
+    data = apply_verified_coordinate_overrides(build_default_facilities())
     save_facilities(data)
     return data
 
@@ -1310,7 +1346,7 @@ def normalize_loaded_facilities(data):
         rec.setdefault("region", get_region(rec.get("address", "")))
         rec.setdefault("is_kofu", "甲府市" in rec.get("address", ""))
         normalized.append(rec)
-    return normalized
+    return apply_verified_coordinate_overrides(normalized)
 
 
 if "facilities" not in st.session_state:
@@ -1435,7 +1471,7 @@ if mode == "🔎 利用者向け検索ページ":
                 f"{row['address']}<br>"
                 f"TEL: {row['phone']}<br>"
                 f"サービス: {'、'.join(row['services'])}<br>"
-                f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search'} else '概算位置'}"
+                f"位置: {'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search', 'verified_web'} else '概算位置'}"
             )
             folium.Marker(
                 location=[row["lat"], row["lon"]],
@@ -1539,7 +1575,7 @@ if mode == "🔎 利用者向け検索ページ":
             )
             dist_df = dist_df.sort_values("distance_km")
 
-            approx_count = int((~dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)).isin(["geocoded", "gsi_fixed", "gsi_search"])).sum())
+            approx_count = int((~dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)).isin(["geocoded", "gsi_fixed", "gsi_search", "verified_web"])).sum())
             if approx_count:
                 st.info(
                     f"表示対象のうち {approx_count}件は位置情報が未確認のため、距離は概算です。"
@@ -1564,7 +1600,7 @@ if mode == "🔎 利用者向け検索ページ":
                 st.markdown(
                     f"""<div class="fac-card">
                     <h3>{row['name']}（約{row['distance_km']}km）</h3>
-                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search'} else '概算位置'}</p>
+                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search', 'verified_web'} else '概算位置'}</p>
                     {badges}
                     <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
                     <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
@@ -1607,7 +1643,7 @@ else:
     )
 
     st.subheader("📍 事業所の位置情報を正確にする")
-    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") in {"geocoded", "gsi_fixed", "gsi_search"})
+    exact_count = sum(1 for r in st.session_state.facilities if r.get("geo_source") in {"geocoded", "gsi_fixed", "gsi_search", "verified_web"})
     total_count = len(st.session_state.facilities)
     st.progress(exact_count / total_count if total_count else 0.0)
     st.caption(f"正確な位置を固定済み：{exact_count} / {total_count}件")
@@ -1618,7 +1654,7 @@ else:
     st.info("①まず住居表示住所データで高精度固定 → ②残りを地理院地図の住所検索で補完、の順に実行してください。")
 
     if st.button("🗺️ 国土地理院データで位置を一括固定する", type="primary"):
-        targets = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search"}]
+        targets = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search", "verified_web"}]
         if not targets:
             st.success("固定化できる事業所はすべて処理済みです。")
         else:
@@ -1661,7 +1697,7 @@ else:
         "住所によっては番地そのものではなく、街区・町丁目などの代表地点になる場合があります。"
     )
     if st.button("🔎 残りの事業所を住所検索で補完する"):
-        targets2 = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search"}]
+        targets2 = [r for r in st.session_state.facilities if r.get("geo_source") not in {"geocoded", "gsi_fixed", "gsi_search", "verified_web"}]
         if not targets2:
             st.success("住所検索で補完する事業所はありません。")
         else:
@@ -1795,6 +1831,7 @@ else:
                 rec = recompute_geo(rec)
             new_records.append(rec)
 
+        new_records = apply_verified_coordinate_overrides(new_records)
         st.session_state.facilities = new_records
         if save_facilities(new_records):
             st.success(f"保存しました（{len(new_records)}件）。利用者ページに反映されます。")
@@ -1803,7 +1840,7 @@ else:
 
     st.divider()
     if st.button("⚠️ 初期データにリセットする"):
-        st.session_state.facilities = build_default_facilities()
+        st.session_state.facilities = apply_verified_coordinate_overrides(build_default_facilities())
         save_facilities(st.session_state.facilities)
         st.success("初期データにリセットしました。")
         st.rerun()
