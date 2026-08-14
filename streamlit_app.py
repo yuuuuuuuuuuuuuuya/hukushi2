@@ -1706,10 +1706,24 @@ else:
         high_n = sum(1 for r in suspicious_rows if r.get("優先度") == "高")
         st.warning(f"絞り込み後の確認候補：{len(suspicious_rows)}件（最優先 {top_n}件／高 {high_n}件）")
         suspicious_df = pd.DataFrame(suspicious_rows)
-        st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=460)
+        export_cols = [
+            "優先度", "事業所名", "法人", "住所", "緯度", "経度",
+            "要確認理由", "同じ座標の住所", "同じ座標の法人"
+        ]
+        export_df = suspicious_df[[c for c in export_cols if c in suspicious_df.columns]].copy()
+        st.dataframe(export_df, use_container_width=True, hide_index=True, height=460)
+
+        csv_bytes = export_df.to_csv(index=False).encode("utf-8-sig")
+        st.download_button(
+            "⬇️ 確認候補13件をCSVで保存",
+            data=csv_bytes,
+            file_name="位置要確認候補.csv",
+            mime="text/csv",
+            key="download_suspicious_csv",
+        )
         st.caption(
-            "この一覧は誤り確定ではなく、代表地点にまとめられている可能性が比較的高い候補です。"
-            "まず数件を地図で確認し、実際にズレているものだけ修正すれば十分です。"
+            "このCSVには事業所名・住所・現在座標・要確認理由が入っています。"
+            "外部照合したい場合は、このCSVをこのチャットにアップロードしてください。"
         )
     else:
         st.success("現在の厳しめの判定では、優先して確認すべき重複座標は見つかりませんでした。")
