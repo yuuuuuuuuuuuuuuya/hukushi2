@@ -339,7 +339,7 @@ KEIPEキャリア|甲府市中央5-2-30|055-225-3262|20|KEIPE（株）|就労移
 また明日セルフサポート|南アルプス市百々2355-1|055-288-1177|6|また明日（株）|就労移行支援
 甲斐志麻の里ファーム|甲斐市島上条1277-1|055-288-1241|6|（特非）甲斐志麻の里ファーム|就労移行支援
 ワークスペース・エム|甲斐市岩森1079-1|0551-28-7471|10|（福）共生会|就労移行支援
-ルヴァン|中央市成島3508-13|055-242-8800|6|（福）忠恕会|就労移行支援
+ル・ヴァン|中央市成島3508-13|055-242-8800|6|（福）忠恕会|就労移行支援
 山梨クリナース|山梨市大野1551-1|0553-23-3382|6|（福）忠恕会|就労移行支援
 ケアフィットファーム|甲州市塩山赤尾650|0553-39-8681|6|（公財）日本ケアフィット共育機構|就労移行支援
 障害福祉サービス事業所ありんこ|富士吉田市大明見1-13-28|0555-22-7217|6|（福）ありんこ|就労移行支援
@@ -467,7 +467,7 @@ KEIPE ONE|甲府市中央5丁目2番31号|055-209-2939|20|ファンづくりカ�
 就労継続支援B型事業所にじいろ|甲斐市玉川1439-1|090-3495-0881|20|（同）Sunny|就労継続支援B型
 就労支援事業所クリーム|中央市木原1378-2|055-236-9797|20|（株）栄光|就労継続支援B型
 就労継続支援B型事業所G.C.B|中央市成島2225-1|055-270-0759|20|（同）GREEN CLOSET|就労継続支援B型
-ルヴァン|中央市成島3508-13|055-242-8800|30|（福）忠恕会|就労継続支援B型
+ル・ヴァン|中央市成島3508-13|055-242-8800|30|（福）忠恕会|就労継続支援B型
 ほっとらんにんぐ|中央市山之神1522-83|055-278-5070|20|（福）ひとふさの葡萄|就労継続支援B型
 Luce|中央市西花輪369-3|080-3014-3321|20|（同）hanasaku|就労継続支援B型
 アルプスの杜|中央市西花輪2717-1|055-273-0294|10|（株）アルプスの杜|就労継続支援B型
@@ -1362,6 +1362,12 @@ def apply_2026_official_updates(data):
     """既存JSONを残したまま、令和8年6月1日現在の公式差分を追加・マージする。"""
     result = [dict(r) for r in data]
 
+    # 既存JSONの表記ゆれを正式・検索しやすい表示へ更新。
+    for rec in result:
+        if (str(rec.get("name", "")).strip() == "ルヴァン"
+                and _compact_text_for_match(rec.get("address")) == _compact_text_for_match("中央市成島3508-13")):
+            rec["name"] = "ル・ヴァン"
+
     # 「マハロ」を県公式の通称入り表示に更新。
     for rec in result:
         if (rec.get("name") == "マハロ"
@@ -1433,6 +1439,8 @@ def apply_2026_official_updates(data):
 # 住所は自治体・法人等の公開情報、座標はMapFan/NAVITIME/国土数値情報系等で照合。
 # =============================================================================
 VERIFIED_COORDINATE_OVERRIDES = {
+    ("ルヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
+    ("ル・ヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
     ("ケアハウスランタン", "北杜市長坂町大井ケ森978-1"): (35.86930882, 138.35214448),
     ("緑の風", "北杜市長坂町大井ヶ森994-1"): (35.8709939, 138.3513146),
     ("ハッピーKAI", "甲斐市牛句118"): (35.69822311401367, 138.52255249023438),
@@ -1587,10 +1595,22 @@ if mode == "🔎 利用者向け検索ページ":
     if not filtered.empty:
         if keyword:
             kw = keyword.strip()
+
+            def _search_norm(v):
+                text = str(v or "").lower()
+                text = text.translate(str.maketrans("０１２３４５６７８９", "0123456789"))
+                for ch in ["・", "･", " ", "　", "-", "‐", "‑", "–", "—", "―"]:
+                    text = text.replace(ch, "")
+                return text
+
+            nkw = _search_norm(kw)
+            name_norm = filtered["name"].apply(_search_norm)
+            org_norm = filtered["org"].apply(_search_norm)
+            addr_norm = filtered["address"].apply(_search_norm)
             filtered = filtered[
-                filtered["name"].str.contains(kw, case=False, na=False)
-                | filtered["org"].str.contains(kw, case=False, na=False)
-                | filtered["address"].str.contains(kw, case=False, na=False)
+                name_norm.str.contains(nkw, regex=False, na=False)
+                | org_norm.str.contains(nkw, regex=False, na=False)
+                | addr_norm.str.contains(nkw, regex=False, na=False)
             ]
         if selected_regions:
             filtered = filtered[filtered["region"].isin(selected_regions)]
