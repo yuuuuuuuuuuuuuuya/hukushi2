@@ -1091,8 +1091,44 @@ def _address_parts_for_geo_check(address: str):
     return stem, nums
 
 
+def _norm_org_for_geo_check(text: str) -> str:
+    s = str(text or "")
+    for token in ["（福）", "(福)", "社会福祉法人", "（株）", "(株)", "株式会社", "（有）", "(有)", "有限会社", "（特非）", "NPO法人", "特定非営利活動法人", "（一社）", "一般社団法人", "（公財）", "公益財団法人", "（医）", "医療法人", "合同会社", "（同）"]:
+        s = s.replace(token, "")
+    return re.sub(r"[\s・･ー\-（）()]+", "", s).lower()
+
+
+def _norm_name_for_geo_check(text: str) -> str:
+    s = str(text or "")
+    # サービス種別や一般語を外し、施設固有名の近さを見る。
+    for token in [
+        "障害福祉サービス事業所", "障がい福祉事業所", "障害者支援施設", "就労継続支援a型", "就労継続支援b型",
+        "就労継続支援", "就労移行支援", "生活介護事業所", "生活介護", "共同生活援助", "グループホーム",
+        "多機能型事業所", "多機能型通所事業所", "事業所", "支援センター", "サポートセンター", "センター",
+    ]:
+        s = s.lower().replace(token, "")
+    return re.sub(r"[\s・･ー\-（）()・/／]+", "", s)
+
+
+def _names_look_related(a: str, b: str) -> bool:
+    a = _norm_name_for_geo_check(a)
+    b = _norm_name_for_geo_check(b)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    if min(len(a), len(b)) >= 4 and (a in b or b in a):
+        return True
+    # 4文字以上の連続部分が共通なら、同一施設系列の可能性を高めに見る。
+    short, long_ = (a, b) if len(a) <= len(b) else (b, a)
+    for n in range(min(6, len(short)), 3, -1):
+        if any(short[i:i+n] in long_ for i in range(len(short)-n+1)):
+            return True
+    return False
+
+
 def analyze_suspicious_coordinates(records):
-    """同一点への代表点吸着が強く疑われる gsi_search 座標だけを抽出する。"""
+    """代表地点への吸着が特に強く疑われる gsi_search 座標だけを厳選する。"""
     coord_groups = {}
     for rec in records:
         if rec.get("geo_source") != "gsi_search":
@@ -1118,31 +1154,49 @@ def analyze_suspicious_coordinates(records):
             stem, nums = _address_parts_for_geo_check(addr)
             parsed.append((addr, rec, stem, nums))
 
-        stems = {x[2] for x in parsed}
-        first_nums = {x[3][0] for x in parsed if x[3]}
-
-        if len(stems) >= 2:
-            group_reason = f"町名等が異なる住所{len(unique)}件が同じ座標"
-        elif len(first_nums) >= 2:
-            group_reason = f"主要番地が異なる住所{len(unique)}件が同じ座標"
-        else:
+        stems = {x[2] for x in parsed if x[2]}
+        if len(stems) < 2:
+            # 同じ町名内の番地違いは今回は優先確認から外す。
             continue
 
+        orgs = {_norm_org_for_geo_check(x[1].get("org", "")) for x in parsed if _norm_org_for_geo_check(x[1].get("org", ""))}
+
+        # 同じ法人で、施設名も相互に近いグループは同一拠点・系列施設の可能性が高いので除外。
+        same_org = len(orgs) == 1 and len(orgs) > 0
+        if same_org:
+            names = [x[1].get("name", "") for x in parsed]
+            related_pairs = 0
+            total_pairs = 0
+            for i in range(len(names)):
+                for j in range(i + 1, len(names)):
+                    total_pairs += 1
+                    if _names_look_related(names[i], names[j]):
+                        related_pairs += 1
+            if total_pairs and related_pairs / total_pairs >= 0.5:
+                continue
+
         group_addresses = " / ".join(sorted(unique.keys()))
+        group_orgs = " / ".join(sorted({str(x[1].get("org", "") or "") for x in parsed if x[1].get("org")}))
+        reason = "町名等が異なる住所が同じ座標"
+        if len(orgs) >= 2:
+            reason += "・法人も異なる"
+
         for addr, rec, stem, nums in parsed:
             results.append({
-                "優先度": "高",
+                "優先度": "最優先" if len(orgs) >= 2 else "高",
                 "事業所名": rec.get("name", ""),
+                "法人": rec.get("org", ""),
                 "住所": rec.get("address", ""),
                 "同じ座標の住所": group_addresses,
+                "同じ座標の法人": group_orgs,
                 "緯度": rec.get("lat"),
                 "経度": rec.get("lon"),
-                "要確認理由": group_reason,
+                "要確認理由": reason,
             })
 
-    results.sort(key=lambda x: (x["住所"], x["事業所名"]))
+    priority = {"最優先": 0, "高": 1}
+    results.sort(key=lambda x: (priority.get(x["優先度"], 9), x["住所"], x["事業所名"]))
     return results
-
 
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
@@ -1642,13 +1696,15 @@ else:
 
     st.markdown("#### 🔍 位置が怪しい可能性のある事業所を確認")
     st.caption(
-        "住所検索で補完した事業所のうち、同じ座標に複数の異なる住所が重なり、"
-        "さらに町名等または主要番地まで違うケースだけを抽出します。"
-        "同じ主要番地で枝番だけ違うケースは、同一敷地・同一建物の可能性があるため原則除外します。"
+        "住所検索で補完した事業所のうち、町名等が異なる住所なのに同じ座標へまとまったケースを中心に抽出します。"
+        "同じ町名内の番地違い、同じ法人かつ施設名がよく似るケースは、同一敷地・系列施設の可能性があるため除外します。"
+        "法人まで異なるものを『最優先』として表示します。"
     )
     suspicious_rows = analyze_suspicious_coordinates(st.session_state.facilities)
     if suspicious_rows:
-        st.warning(f"優先確認候補：{len(suspicious_rows)}件")
+        top_n = sum(1 for r in suspicious_rows if r.get("優先度") == "最優先")
+        high_n = sum(1 for r in suspicious_rows if r.get("優先度") == "高")
+        st.warning(f"絞り込み後の確認候補：{len(suspicious_rows)}件（最優先 {top_n}件／高 {high_n}件）")
         suspicious_df = pd.DataFrame(suspicious_rows)
         st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=460)
         st.caption(
