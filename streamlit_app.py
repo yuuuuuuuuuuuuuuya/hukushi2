@@ -1078,13 +1078,25 @@ def _norm_for_geo_check(text: str) -> str:
     s = s.replace("山梨県", "").replace("丁目", "-").replace("番地", "-").replace("番", "-").replace("号", "")
     s = s.translate(str.maketrans("０１２３４５６７８９－ー―−", "0123456789----"))
     s = re.sub(r"\s+", "", s)
+    s = re.sub(r"-+", "-", s).strip("-")
     return s
 
 
+def _address_parts_for_geo_check(address: str):
+    """住所を、文字部分（町名等）と数字列にざっくり分ける。"""
+    s = _norm_for_geo_check(address)
+    m = re.search(r"\d", s)
+    stem = s[:m.start()] if m else s
+    nums = [int(x) for x in re.findall(r"\d+", s)]
+    return stem, nums
+
+
 def analyze_suspicious_coordinates(records):
-    """住所検索補完のうち、代表点を拾っている可能性が高いものを自動抽出する。"""
+    """同一点への代表点吸着が強く疑われる gsi_search 座標だけを抽出する。"""
     coord_groups = {}
     for rec in records:
+        if rec.get("geo_source") != "gsi_search":
+            continue
         try:
             key = (round(float(rec.get("lat")), 6), round(float(rec.get("lon")), 6))
         except (TypeError, ValueError):
@@ -1092,133 +1104,45 @@ def analyze_suspicious_coordinates(records):
         coord_groups.setdefault(key, []).append(rec)
 
     results = []
-    for rec in records:
-        if rec.get("geo_source") != "gsi_search":
+    for key, peers in coord_groups.items():
+        unique = {}
+        for rec in peers:
+            addr = _norm_for_geo_check(rec.get("address", ""))
+            if addr:
+                unique.setdefault(addr, rec)
+        if len(unique) < 2:
             continue
-        reasons = []
-        priority = 0
-        try:
-            key = (round(float(rec.get("lat")), 6), round(float(rec.get("lon")), 6))
-        except (TypeError, ValueError):
-            key = None
 
-        if key is not None:
-            peers = coord_groups.get(key, [])
-            distinct_addresses = {str(x.get("address", "")) for x in peers if x.get("address")}
-            if len(distinct_addresses) >= 2:
-                priority = max(priority, 2)
-                reasons.append(f"異なる住所{len(distinct_addresses)}件が同じ座標")
+        parsed = []
+        for addr, rec in unique.items():
+            stem, nums = _address_parts_for_geo_check(addr)
+            parsed.append((addr, rec, stem, nums))
 
-        address = _norm_for_geo_check(rec.get("address", ""))
-        label = _norm_for_geo_check(rec.get("geo_label", ""))
-        addr_nums = re.findall(r"\d+", address)
-        label_nums = set(re.findall(r"\d+", label))
-        if addr_nums and not any(n in label_nums for n in addr_nums[-2:]):
-            priority = max(priority, 1)
-            reasons.append("住所の番地情報が検索結果ラベルに見当たらない")
+        stems = {x[2] for x in parsed}
+        first_nums = {x[3][0] for x in parsed if x[3]}
 
-        if priority:
+        if len(stems) >= 2:
+            group_reason = f"町名等が異なる住所{len(unique)}件が同じ座標"
+        elif len(first_nums) >= 2:
+            group_reason = f"主要番地が異なる住所{len(unique)}件が同じ座標"
+        else:
+            continue
+
+        group_addresses = " / ".join(sorted(unique.keys()))
+        for addr, rec, stem, nums in parsed:
             results.append({
-                "優先度": "高" if priority >= 2 else "中",
+                "優先度": "高",
                 "事業所名": rec.get("name", ""),
                 "住所": rec.get("address", ""),
-                "検索結果": str(rec.get("geo_label", "")).replace("地理院地図住所検索: ", ""),
+                "同じ座標の住所": group_addresses,
                 "緯度": rec.get("lat"),
                 "経度": rec.get("lon"),
-                "要確認理由": "／".join(reasons),
+                "要確認理由": group_reason,
             })
-    results.sort(key=lambda x: (0 if x["優先度"] == "高" else 1, x["住所"]))
+
+    results.sort(key=lambda x: (x["住所"], x["事業所名"]))
     return results
 
-
-
-
-def geocode_gsi_name_address_diagnostic(name: str, address: str):
-    """事業所名＋住所で再検索し、現在座標との突合用候補を返す。"""
-    queries = []
-    name = str(name or '').strip()
-    address = str(address or '').strip()
-    if name and address:
-        queries.append(f"山梨県 {name} {address}")
-        queries.append(f"{name} {address}")
-    if name:
-        queries.append(f"山梨県 {name}")
-    seen = set()
-    for query in queries:
-        if not query or query in seen:
-            continue
-        seen.add(query)
-        try:
-            r = requests.get(
-                GSI_ADDRESS_SEARCH_URL,
-                params={"q": query},
-                headers={"User-Agent": "yamanashi-welfare-facility-search/4.0"},
-                timeout=20,
-            )
-            r.raise_for_status()
-            data = r.json()
-            features = data if isinstance(data, list) else data.get("features", []) if isinstance(data, dict) else []
-            for feat in features:
-                try:
-                    coords = feat.get("geometry", {}).get("coordinates", [])
-                    lon, lat = float(coords[0]), float(coords[1])
-                except Exception:
-                    continue
-                if 35.10 <= lat <= 36.05 and 138.10 <= lon <= 139.20:
-                    props = feat.get("properties", {}) if isinstance(feat, dict) else {}
-                    title = props.get("title") or query
-                    return {"lat": lat, "lon": lon, "display_name": str(title), "query": query}, "成功"
-        except requests.Timeout:
-            return None, "通信タイムアウト"
-        except requests.RequestException as e:
-            return None, f"通信エラー: {type(e).__name__}"
-        except Exception as e:
-            return None, f"応答解析エラー: {type(e).__name__}"
-    return None, "候補0件"
-
-def auto_recheck_suspicious(records, suspicious_rows):
-    """要確認候補を事業所名＋住所で再検索し、現在座標との差で自動再判定する。"""
-    by_key = {(str(r.get("name", "")), str(r.get("address", ""))): r for r in records}
-    checked = []
-    for row in suspicious_rows:
-        rec = by_key.get((str(row.get("事業所名", "")), str(row.get("住所", ""))))
-        if not rec:
-            continue
-        result, reason = geocode_gsi_name_address_diagnostic(rec.get("name", ""), rec.get("address", ""))
-        current_lat, current_lon = rec.get("lat"), rec.get("lon")
-        if result and current_lat is not None and current_lon is not None:
-            try:
-                diff = round(haversine_km(float(current_lat), float(current_lon), result["lat"], result["lon"]), 3)
-            except Exception:
-                diff = None
-            if diff is not None and diff <= 0.15:
-                verdict = "問題なさそう"
-            elif diff is not None and diff <= 0.5:
-                verdict = "概ね一致"
-            elif diff is not None and diff <= 2.0:
-                verdict = "要確認"
-            else:
-                verdict = "要確認（ズレ大）"
-            checked.append({
-                "優先度": row.get("優先度", ""),
-                "事業所名": rec.get("name", ""),
-                "住所": rec.get("address", ""),
-                "現在位置とのズレ(km)": diff,
-                "再検索結果": result.get("display_name", ""),
-                "判定": verdict,
-                "再検索クエリ": result.get("query", ""),
-            })
-        else:
-            checked.append({
-                "優先度": row.get("優先度", ""),
-                "事業所名": rec.get("name", ""),
-                "住所": rec.get("address", ""),
-                "現在位置とのズレ(km)": None,
-                "再検索結果": reason,
-                "判定": "手動確認",
-                "再検索クエリ": "",
-            })
-    return checked
 
 def haversine_km(lat1, lon1, lat2, lon2):
     r = 6371.0
@@ -1718,39 +1642,21 @@ else:
 
     st.markdown("#### 🔍 位置が怪しい可能性のある事業所を確認")
     st.caption(
-        "住所検索で補完した事業所のうち、①異なる住所なのに同じ座標になっている、"
-        "②番地付き住所なのに検索結果ラベルから番地情報が落ちている、のどちらかを自動抽出します。"
+        "住所検索で補完した事業所のうち、同じ座標に複数の異なる住所が重なり、"
+        "さらに町名等または主要番地まで違うケースだけを抽出します。"
+        "同じ主要番地で枝番だけ違うケースは、同一敷地・同一建物の可能性があるため原則除外します。"
     )
     suspicious_rows = analyze_suspicious_coordinates(st.session_state.facilities)
     if suspicious_rows:
-        high_n = sum(1 for x in suspicious_rows if x["優先度"] == "高")
-        mid_n = len(suspicious_rows) - high_n
-        st.warning(f"要確認候補：{len(suspicious_rows)}件（高 {high_n}件／中 {mid_n}件）")
+        st.warning(f"優先確認候補：{len(suspicious_rows)}件")
         suspicious_df = pd.DataFrame(suspicious_rows)
-        priority_filter = st.radio("表示する優先度", ["高のみ", "高＋中"], horizontal=True, key="geo_suspicious_filter")
-        if priority_filter == "高のみ":
-            suspicious_df = suspicious_df[suspicious_df["優先度"] == "高"]
-        st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=420)
-        st.caption("まず『高』を地図や公式サイト等で確認するのがおすすめです。『中』は街区・町丁目の代表点である可能性を含む候補です。")
-
-        st.markdown("##### 🤖 自動で再精査")
-        st.caption("要確認候補を『事業所名＋住所』で再検索し、現在位置とのズレを比較します。ズレが小さい候補は手作業確認から外せます。")
-        if st.button("🤖 要確認候補を自動再精査する", key="auto_recheck_suspicious"):
-            with st.spinner("再検索して位置を比較しています…"):
-                rechecked = auto_recheck_suspicious(st.session_state.facilities, suspicious_rows)
-                st.session_state["geo_rechecked_rows"] = rechecked
-
-        rechecked = st.session_state.get("geo_rechecked_rows", [])
-        if rechecked:
-            re_df = pd.DataFrame(rechecked)
-            okay_mask = re_df["判定"].isin(["問題なさそう", "概ね一致"])
-            st.success(f"自動精査：{int(okay_mask.sum())}件は大きなズレが見つかりませんでした。残り {int((~okay_mask).sum())}件を優先確認してください。")
-            only_need = st.checkbox("要確認だけ表示", value=True, key="show_only_recheck_needed")
-            shown = re_df[~okay_mask] if only_need else re_df
-            st.dataframe(shown, use_container_width=True, hide_index=True, height=420)
-
+        st.dataframe(suspicious_df, use_container_width=True, hide_index=True, height=460)
+        st.caption(
+            "この一覧は誤り確定ではなく、代表地点にまとめられている可能性が比較的高い候補です。"
+            "まず数件を地図で確認し、実際にズレているものだけ修正すれば十分です。"
+        )
     else:
-        st.success("現在の自動判定では、強く疑わしい位置は見つかりませんでした。")
+        st.success("現在の厳しめの判定では、優先して確認すべき重複座標は見つかりませんでした。")
 
     st.divider()
 
