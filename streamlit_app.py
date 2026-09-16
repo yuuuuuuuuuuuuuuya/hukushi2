@@ -834,9 +834,78 @@ def geocode_yamanashi_address(address: str):
     return result
 
 
+def _normalize_home_address(address: str):
+    """自宅住所検索用に、よくある表記ゆれを軽く整える。"""
+    text = str(address or "").strip()
+    text = text.replace("〒", "").replace("　", " ")
+    # 郵便番号は検索の邪魔になることがあるため除去
+    text = re.sub(r"\b\d{3}-?\d{4}\b", "", text).strip()
+    # 全角数字・ハイフン類を統一
+    text = text.translate(str.maketrans("０１２３４５６７８９", "0123456789"))
+    for ch in ["－", "ー", "―", "−", "‐", "‑", "–", "—"]:
+        text = text.replace(ch, "-")
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def geocode_home_address_diagnostic(address: str):
+    """
+    自宅住所専用。
+    1) 国土地理院の住所検索
+    2) OpenStreetMap/Nominatim
+    の順で試す。入力住所は保存しない。
+    """
+    original = _normalize_home_address(address)
+    if not original:
+        return None, "住所が空です"
+
+    # 「山梨県」を付けた版・省いた版の両方を試す
+    candidates = []
+    if "山梨県" in original:
+        candidates.append(original)
+        candidates.append(original.replace("山梨県", "", 1).strip())
+    else:
+        candidates.append("山梨県" + original)
+        candidates.append(original)
+
+    # 建物名や部屋番号が付いている場合に備えて、番地までと思われる候補も追加
+    base = re.split(r"[ ,、　]+(?:[A-Za-zＡ-Ｚａ-ｚ].*|[0-9０-９]+(?:号室|号|F|Ｆ).*)$", original, maxsplit=1)[0].strip()
+    if base and base != original:
+        candidates.extend(["山梨県" + base if "山梨県" not in base else base, base])
+
+    # 重複除去
+    seen = set()
+    candidates = [x for x in candidates if x and not (x in seen or seen.add(x))]
+
+    reasons = []
+
+    # 国土地理院は日本語住所に強いため最優先
+    for q in candidates:
+        result, reason = geocode_gsi_maps_address_diagnostic(q)
+        if result:
+            return {
+                "lat": float(result["lat"]),
+                "lon": float(result["lon"]),
+                "display_name": result.get("display_name", q),
+                "source": "国土地理院",
+            }, "成功"
+        reasons.append(f"地理院({q}): {reason}")
+
+    # 地理院で取れない住所はNominatimでも試す
+    for q in candidates:
+        result, reason = geocode_yamanashi_address_diagnostic(q)
+        if result:
+            result["source"] = "OpenStreetMap"
+            return result, "成功"
+        reasons.append(f"OSM({q}): {reason}")
+
+    return None, " / ".join(reasons[-4:])
+
+
 def geocode_home_address(address: str):
-    """自宅住所用。入力住所はファイルへ保存しない。"""
-    return geocode_yamanashi_address(address)
+    """互換用。結果だけ返す。"""
+    result, _ = geocode_home_address_diagnostic(address)
+    return result
 
 
 def geocode_facility_record(rec):
@@ -1287,7 +1356,7 @@ LATEST_2026_RECORDS = [
     # ---- 生活介護：R7.6.1以降の新設 ----
     {"name":"ポタジェ","address":"甲府市大里町4060-1","phone":"055-225-6191","capacity":20,"org":"（NPO）COCOKARA","service":"生活介護"},
     {"name":"山の手倶楽部LAB","address":"甲府市朝気1-2-63","phone":"055-288-8822","capacity":20,"org":"マクロ（株）","service":"生活介護"},
-    {"name":"guffa","address":"甲斐市長塚166-2 中込ビル2階","phone":"090-8042-1940","capacity":20,"org":"（同）toitoitoi","service":"生活介護"},
+    {"name":"guffa","address":"甲斐市長塚166-2 中込ビル2階","phone":"055-215-8253","capacity":20,"org":"（同）toitoitoi","service":"生活介護"},
 
     # ---- 就労選択支援（2025年10月開始の新サービス） ----
     {"name":"すみよし作業センター","address":"甲府市住吉4-10-32","phone":"055-221-2110","capacity":10,"org":"（公財）住吉偕成会","service":"就労選択支援"},
@@ -1439,6 +1508,7 @@ def apply_2026_official_updates(data):
 # 住所は自治体・法人等の公開情報、座標はMapFan/NAVITIME/国土数値情報系等で照合。
 # =============================================================================
 VERIFIED_COORDINATE_OVERRIDES = {
+    ("guffa", "甲斐市長塚166-2 中込ビル2階"): (35.674647, 138.533183),
     ("ルヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
     ("ル・ヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
     ("ケアハウスランタン", "北杜市長坂町大井ケ森978-1"): (35.86930882, 138.35214448),
@@ -1693,15 +1763,25 @@ if mode == "🔎 利用者向け検索ページ":
                 st.warning("自宅住所を入力してください。")
             else:
                 with st.spinner("住所を確認しています…"):
-                    geo_result = geocode_home_address(home_address)
+                    geo_result, geo_reason = geocode_home_address_diagnostic(home_address)
                 if geo_result:
                     st.session_state["address_lat"] = geo_result["lat"]
                     st.session_state["address_lon"] = geo_result["lon"]
                     st.session_state["address_label"] = geo_result["display_name"]
+                    st.session_state["address_source"] = geo_result.get("source", "住所検索")
                     # 住所検索を選んだ場合は、以前取得した現在地より住所を優先する。
                     st.session_state["near_search_mode"] = "address"
+                    st.success(
+                        f"住所を確認できました（{geo_result.get('source', '住所検索')}）。"
+                        "この地点から近い順に表示します。"
+                    )
                 else:
-                    st.warning("住所の位置を確認できませんでした。番地まで含めて入力するか、市町村検索をご利用ください。")
+                    st.warning(
+                        "住所の位置を確認できませんでした。"
+                        "「市町村名＋町名＋番地」の形で入力してみてください。"
+                    )
+                    with st.expander("住所検索の詳細"):
+                        st.caption(geo_reason)
 
         st.divider()
         st.markdown("#### 📍 市町村・現在地から探す")
@@ -1739,7 +1819,12 @@ if mode == "🔎 利用者向け検索ページ":
             user_lat = st.session_state["address_lat"]
             user_lon = st.session_state["address_lon"]
             search_source = "address"
-            st.success("入力した自宅住所を基準に、近い順で表示します。")
+            st.success(
+                f"入力した自宅住所を基準に、近い順で表示します。"
+                f"（{st.session_state.get('address_source', '住所検索')}）"
+            )
+            if st.session_state.get("address_label"):
+                st.caption(f"検索で確認した地点：{st.session_state['address_label']}")
             if st.session_state.get("address_label"):
                 st.caption(f"確認した地点：{st.session_state['address_label']}")
         elif "geo_lat" in st.session_state and "geo_lon" in st.session_state:
