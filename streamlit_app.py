@@ -1618,6 +1618,49 @@ st.caption("成人の通所・入所・就労支援に特化した検索アプ�
 # =============================================================================
 if mode == "🔎 利用者向け検索ページ":
 
+    # -------------------------------------------------------------------------
+    # スタートページ
+    # -------------------------------------------------------------------------
+    if "app_started" not in st.session_state:
+        st.session_state.app_started = False
+
+    if not st.session_state.app_started:
+        st.markdown("## 🧭 山梨県の障害福祉サービスを探す")
+        st.markdown(
+            "山梨県内の障害福祉サービス事業所を、地域・サービス・住所などから探せます。"
+        )
+
+        st.info(
+            "⚠️ **ご利用前にご確認ください**\n\n"
+            "掲載している事業所情報・位置情報は、山梨県の公表資料や公開情報などをもとに作成しています。\n\n"
+            "一部の事業所では、住所から取得した座標や概算位置を使用しているため、"
+            "**地図上のピンが実際の建物の位置と異なる場合があります。**\n\n"
+            "見学・利用・訪問の際は、事業所の公式情報などで所在地をご確認ください。"
+        )
+
+        # 小さな更新情報。内容を追加するときはこの中に追記する。
+        with st.expander("🆕 更新情報", expanded=False):
+            st.caption("2026.09　自宅住所からの近い順検索に対応・位置情報を一部修正")
+            st.caption("2026.08　令和8年6月1日時点の県公表資料を反映")
+
+        if st.button("🔎 検索をはじめる", type="primary", use_container_width=True):
+            st.session_state.app_started = True
+            st.rerun()
+
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="text-align:center; color:#7a7a7a; line-height:1.7; font-size:0.85rem;">
+                <div style="font-weight:600; letter-spacing:0.04em;">Created by yanyu</div>
+                <div style="font-style:italic;">山梨県の障害福祉サービスを、もっと探しやすく。</div>
+                <div style="margin-top:0.35rem; font-weight:600; letter-spacing:0.08em;">© YANYU 725</div>
+                <div style="font-size:0.75rem;">ver.1.0</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.stop()
+
     with st.expander("ℹ️ このアプリについて（データの範囲・注意事項）", expanded=False):
         st.markdown(
             """
