@@ -1752,6 +1752,58 @@ if mode == "🔎 利用者向け検索ページ":
     with tab_near:
         st.markdown("自宅住所・市町村・現在地のいずれかを基準に、近い順で事業所を表示します。")
 
+        def render_nearby_results(base_lat, base_lon, slider_key):
+            """指定地点から近い順の事業所一覧を表示する。"""
+            if filtered.empty:
+                st.info("現在の検索条件に一致する事業所がありません。")
+                return
+
+            dist_df = filtered.dropna(subset=["lat", "lon"]).copy()
+            dist_df["distance_km"] = dist_df.apply(
+                lambda r: round(haversine_km(base_lat, base_lon, r["lat"], r["lon"]), 1), axis=1
+            )
+            dist_df = dist_df.sort_values("distance_km")
+
+            approx_count = int(
+                (~dist_df.get(
+                    "geo_source",
+                    pd.Series(index=dist_df.index, dtype=str)
+                ).isin(["geocoded", "gsi_fixed", "gsi_search", "verified_web"])).sum()
+            )
+            if approx_count:
+                st.info(
+                    f"表示対象のうち {approx_count}件は位置情報が未確認のため、距離は概算です。"
+                    "住所検索済みの事業所は、住所から取得した座標で距離を計算しています。"
+                )
+
+            if len(dist_df) <= 5:
+                show_n = len(dist_df)
+            else:
+                show_n = st.slider(
+                    "表示件数（近い順）",
+                    5,
+                    len(dist_df),
+                    min(15, len(dist_df)),
+                    step=5,
+                    key=slider_key,
+                )
+
+            for _, row in dist_df.head(show_n).iterrows():
+                badges = "".join(
+                    f'<span class="badge {SERVICE_BADGE_CLASS.get(service, "badge-short")}">{service}</span>'
+                    for service in row["services"]
+                )
+                st.markdown(
+                    f"""<div class="fac-card">
+                    <h3>{row['name']}（約{row['distance_km']}km）</h3>
+                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search', 'verified_web'} else '概算位置'}</p>
+                    {badges}
+                    <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
+                    <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
+                    </div>""",
+                    unsafe_allow_html=True,
+                )
+
         st.markdown("#### 🏠 自宅住所から探す")
         home_address = st.text_input(
             "自宅住所",
@@ -1783,6 +1835,19 @@ if mode == "🔎 利用者向け検索ページ":
                     with st.expander("住所検索の詳細"):
                         st.caption(geo_reason)
 
+        # 自宅住所検索を使ったときだけ、結果を住所入力欄のすぐ下に表示する。
+        if (st.session_state.get("near_search_mode") == "address"
+                and "address_lat" in st.session_state
+                and "address_lon" in st.session_state):
+            if st.session_state.get("address_label"):
+                st.caption(f"検索で確認した地点：{st.session_state['address_label']}")
+            st.markdown("##### 🏠 自宅住所から近い事業所")
+            render_nearby_results(
+                st.session_state["address_lat"],
+                st.session_state["address_lon"],
+                "near_count_address",
+            )
+
         st.divider()
         st.markdown("#### 📍 市町村・現在地から探す")
         col1, col2 = st.columns([2, 1])
@@ -1804,76 +1869,27 @@ if mode == "🔎 利用者向け検索ページ":
             else:
                 st.caption("（現在地取得機能は現在この環境では利用できません）")
 
-        user_lat = user_lon = None
-        search_source = None
+        # 市町村・現在地検索の結果は、これまで通りこの欄の下に表示する。
+        muni_lat = muni_lon = None
+        muni_source = None
 
-        # 明示的に押した検索方法を優先する。市町村を選択した場合はその選択を優先。
         if home_muni != "選択してください":
-            user_lat, user_lon = MUNI_LATLON[home_muni]
-            search_source = "municipality"
+            muni_lat, muni_lon = MUNI_LATLON[home_muni]
+            muni_source = "municipality"
             st.session_state["near_search_mode"] = "municipality"
             st.info(f"「{home_muni}」の代表地点からの距離（概算）で並べ替えます。")
-        elif (st.session_state.get("near_search_mode") == "address"
-              and "address_lat" in st.session_state
-              and "address_lon" in st.session_state):
-            user_lat = st.session_state["address_lat"]
-            user_lon = st.session_state["address_lon"]
-            search_source = "address"
-            st.success(
-                f"入力した自宅住所を基準に、近い順で表示します。"
-                f"（{st.session_state.get('address_source', '住所検索')}）"
-            )
-            if st.session_state.get("address_label"):
-                st.caption(f"検索で確認した地点：{st.session_state['address_label']}")
-            if st.session_state.get("address_label"):
-                st.caption(f"確認した地点：{st.session_state['address_label']}")
-        elif "geo_lat" in st.session_state and "geo_lon" in st.session_state:
-            user_lat = st.session_state["geo_lat"]
-            user_lon = st.session_state["geo_lon"]
-            search_source = "geo"
+        elif (st.session_state.get("near_search_mode") == "geo"
+              and "geo_lat" in st.session_state
+              and "geo_lon" in st.session_state):
+            muni_lat = st.session_state["geo_lat"]
+            muni_lon = st.session_state["geo_lon"]
+            muni_source = "geo"
             st.success("現在地からの距離で並べ替えます。")
 
-        if user_lat is not None and not filtered.empty:
-            dist_df = filtered.dropna(subset=["lat", "lon"]).copy()
-            dist_df["distance_km"] = dist_df.apply(
-                lambda r: round(haversine_km(user_lat, user_lon, r["lat"], r["lon"]), 1), axis=1
-            )
-            dist_df = dist_df.sort_values("distance_km")
-
-            approx_count = int((~dist_df.get("geo_source", pd.Series(index=dist_df.index, dtype=str)).isin(["geocoded", "gsi_fixed", "gsi_search", "verified_web"])).sum())
-            if approx_count:
-                st.info(
-                    f"表示対象のうち {approx_count}件は位置情報が未確認のため、距離は概算です。"
-                    "住所検索済みの事業所は、住所から取得した座標で距離を計算しています。"
-                )
-
-            if len(dist_df) <= 5:
-                show_n2 = len(dist_df)
-            else:
-                show_n2 = st.slider(
-                    "表示件数（近い順）",
-                    5,
-                    len(dist_df),
-                    min(15, len(dist_df)),
-                    step=5,
-                )
-            for _, row in dist_df.head(show_n2).iterrows():
-                badges = "".join(
-                    f'<span class="badge {SERVICE_BADGE_CLASS.get(s, "badge-short")}">{s}</span>'
-                    for s in row["services"]
-                )
-                st.markdown(
-                    f"""<div class="fac-card">
-                    <h3>{row['name']}（約{row['distance_km']}km）</h3>
-                    <p><b>位置情報：</b>{'固定位置' if row.get('geo_source') in {'geocoded', 'gsi_fixed', 'gsi_search', 'verified_web'} else '概算位置'}</p>
-                    {badges}
-                    <p><b>所在地：</b>{row['address']}（{row['region']}圏域）<br>
-                    <b>電話：</b>{row['phone'] or '—'}　<b>定員：</b>{row['capacity'] if row['capacity'] else '—'}人</p>
-                    </div>""",
-                    unsafe_allow_html=True,
-                )
-        else:
-            st.caption("自宅住所を入力するか、市町村を選択するか、現在地を取得すると、近い順の一覧が表示されます。")
+        if muni_lat is not None:
+            render_nearby_results(muni_lat, muni_lon, "near_count_muni_geo")
+        elif st.session_state.get("near_search_mode") != "address":
+            st.caption("市町村を選択するか、現在地を取得すると、近い順の一覧が表示されます。")
 
 
 # =============================================================================
