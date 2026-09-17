@@ -324,7 +324,7 @@ RAW_TRANS = """
 すみよし作業センター|甲府市住吉4-10-32|055-221-2110|6|（公財）住吉偕成会|就労移行支援
 こっとん|甲府市高畑1-16-8|055-225-5440|6|（株）NEXT・DOOR|就労移行支援
 かしのみNeo|甲府市宝1-22-2|055-270-0005|6|（福）かしのみ福祉会|就労移行支援
-SAKURA山梨センター|甲府市徳行2-5-13|055-221-3918|13|（株）綜合キャリアトラスト|就労移行支援
+SAKURA山梨センター|甲府市徳行2-5-13|055-221-3918|20|（株）綜合キャリアトラスト|就労移行支援
 ジリツアカデミー|甲府市宮原町94-1|055-268-2255|14|（株）ZIRITS|就労移行支援
 自立支援FIT|甲府市横根町1010-1|055-233-0838|6|（特非）自立支援FIT|就労移行支援
 山梨クリナース酒折|甲府市横根町150-1|055-233-0200|6|（福）忠恕会|就労移行支援
@@ -500,7 +500,7 @@ G.O works|中巨摩郡昭和町西条新田401-6|055-270-0629|20|（一社）あ
 ワークハウス「きのこ」|西八代郡市川三郷町黒沢880|055-288-0398|20|（一社）あかね|就労継続支援B型
 ふじかわどりいむ|南巨摩郡富士川町青柳町498|0556-20-6050|40|（福）深敬園|就労継続支援B型
 ステップ増穂|南巨摩郡富士川町長澤399-1|0556-22-8311|40|（特非）南風会|就労継続支援B型
-ステップ増穂Ⅱ|南巨摩郡富士川町天神中條1041-1|0556-48-8707|20|（特非）南風会|就労継続支援B型
+ステップ増穂Ⅱ|南巨摩郡富士川町天神中條1041-1|0556-48-8707|30|（特非）南風会|就労継続支援B型
 アシストゆう|南巨摩郡富士川町長澤992|0556-48-8577|20|（株）アシストエンジニアリング|就労継続支援B型
 ゆあーずあんどゆうず|南巨摩郡富士川町長澤2374-1|0556-22-8211|20|（福）くにみ会|就労継続支援B型
 福祉の実たけのこ|富士吉田市旭5-1-1|0555-25-7080|20|（一社）みどり|就労継続支援B型
@@ -1356,7 +1356,7 @@ LATEST_2026_RECORDS = [
     # ---- 生活介護：R7.6.1以降の新設 ----
     {"name":"ポタジェ","address":"甲府市大里町4060-1","phone":"055-225-6191","capacity":20,"org":"（NPO）COCOKARA","service":"生活介護"},
     {"name":"山の手倶楽部LAB","address":"甲府市朝気1-2-63","phone":"055-288-8822","capacity":20,"org":"マクロ（株）","service":"生活介護"},
-    {"name":"guffa","address":"甲斐市長塚166-2 中込ビル2階","phone":"055-215-8253","capacity":20,"org":"（同）toitoitoi","service":"生活介護"},
+    {"name":"guffa","address":"甲斐市長塚166-2 中込ビル2階","phone":"090-8042-1940","capacity":20,"org":"（同）toitoitoi","service":"生活介護"},
 
     # ---- 就労選択支援（2025年10月開始の新サービス） ----
     {"name":"すみよし作業センター","address":"甲府市住吉4-10-32","phone":"055-221-2110","capacity":10,"org":"（公財）住吉偕成会","service":"就労選択支援"},
@@ -1417,6 +1417,9 @@ LATEST_2026_RECORDS = [
     {"name":"グループホーム マルチーズ","address":"南アルプス市古市場595","phone":"055-284-7012","capacity":17,"org":"（株）ICHIE ASU","service":"共同生活援助"},
     {"name":"第二彦星","address":"甲府市国母5-3-35","phone":"055-288-1750","capacity":10,"org":"（同）Grk","service":"共同生活援助"},
     {"name":"障がい者グループホーム さとの家","address":"南アルプス市藤田1511-2","phone":"070-8325-2849","capacity":5,"org":"（同）ケーユー管理","service":"共同生活援助"},
+
+    # ---- 富士川町：既存データの取りこぼし補完 ----
+    {"name":"ふじかわどりいむ ながさわ","address":"南巨摩郡富士川町長澤213-2","phone":"0556-20-6050","capacity":20,"org":"（福）深敬園","service":"就労継続支援B型"},
 
     # ---- 以前のデータで通称が検索しづらかった事業所 ----
     {"name":"マハロ（通称 スマイルファクトリー）","address":"南アルプス市西南湖32-1","phone":"055-234-5024","capacity":20,"org":"（福）青い樹の会","service":"就労継続支援B型"},
@@ -1508,6 +1511,7 @@ def apply_2026_official_updates(data):
 # 住所は自治体・法人等の公開情報、座標はMapFan/NAVITIME/国土数値情報系等で照合。
 # =============================================================================
 VERIFIED_COORDINATE_OVERRIDES = {
+    ("SAKURA山梨センター", "甲府市徳行2-5-13"): (35.6499556, 138.5493861),
     ("guffa", "甲斐市長塚166-2 中込ビル2階"): (35.674647, 138.533183),
     ("ルヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
     ("ル・ヴァン", "中央市成島3508-13"): (35.6085587, 138.5442657),
@@ -1541,16 +1545,32 @@ def apply_verified_coordinate_overrides(data):
         corrected.append(rec)
     return corrected
 
+def auto_complete_unverified_coordinates(data):
+    """未確認位置を地理院地図の住所検索で自動補完する。
+
+    個別に公開地図で照合済みの座標を最優先し、それ以外の approx のみを対象にする。
+    住所検索で取得できない場合は従来の概算位置を残す。
+    """
+    completed = []
+    for item in data:
+        rec = dict(item)
+        if rec.get("geo_source") == "approx" and rec.get("address"):
+            match_gsi_search_coordinate(rec)
+        completed.append(rec)
+    return completed
+
+
 def load_facilities():
     if os.path.exists(DATA_FILE):
         try:
             with open(DATA_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            return apply_verified_coordinate_overrides(apply_2026_official_updates(data))
+            return auto_complete_unverified_coordinates(apply_verified_coordinate_overrides(apply_2026_official_updates(data)))
         except Exception:
             pass
     data = apply_2026_official_updates(build_default_facilities())
     data = apply_verified_coordinate_overrides(data)
+    data = auto_complete_unverified_coordinates(data)
     save_facilities(data)
     return data
 
@@ -1584,7 +1604,7 @@ def normalize_loaded_facilities(data):
         rec.setdefault("region", get_region(rec.get("address", "")))
         rec.setdefault("is_kofu", "甲府市" in rec.get("address", ""))
         normalized.append(rec)
-    return apply_verified_coordinate_overrides(apply_2026_official_updates(normalized))
+    return auto_complete_unverified_coordinates(apply_verified_coordinate_overrides(apply_2026_official_updates(normalized)))
 
 
 if "facilities" not in st.session_state:
@@ -1670,7 +1690,7 @@ if mode == "🔎 利用者向け検索ページ":
                 <div style="font-weight:600; letter-spacing:0.04em;">Created by yanyu</div>
                 <div style="font-style:italic;">山梨県の障害福祉サービスを、もっと探しやすく。</div>
                 <div style="margin-top:0.35rem; font-weight:600; letter-spacing:0.08em;">© YANYU 725</div>
-                <div style="font-size:0.75rem;">ver.1.0</div>
+                <div style="font-size:0.75rem;">ver.1.1</div>
             </div>
             """,
             unsafe_allow_html=True,
